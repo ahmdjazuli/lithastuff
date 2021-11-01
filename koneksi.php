@@ -1,0 +1,1 @@
+<?php $kon = mysqli_connect('localhost', 'root', '', 'db_lithastuff') or die ("Koneksi Gagal"); ?>
