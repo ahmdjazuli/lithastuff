@@ -55,7 +55,12 @@
 					<h1><?= $data['namatanam'] ?></h1>
 					</a>
 					<span class="price">
-					<span class="edd_price">Rp. <?= number_format($data['harga'],0,',','.') ?></span>
+					<span class="edd_price">Rp.
+						<?php if($memori['level']=='reseller'){ 
+							echo number_format($data['modal'],0,',','.'); 
+						}else{ 
+							echo number_format($data['harga'],0,',','.'); 
+						} ?></span>
 					</span>
 				</div>
 			</div>

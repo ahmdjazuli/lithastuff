@@ -19,12 +19,17 @@ require_once("koneksi.php"); session_start();
 			$_SESSION['id'] = $cek['id'];
 			$_SESSION['level'] = "pelanggan";
 			?> <script>window.location='index.php'</script> <?php
+		}else if($cek['level'] == 'reseller'){
+			$_SESSION['username'] = $username;
+			$_SESSION['id'] = $cek['id'];
+			$_SESSION['level'] = "reseller";
+			?> <script>window.location='index.php'</script> <?php
 		}else if(mysqli_num_rows($kurirku) > 0){
 			$_SESSION['username'] = $username;
 			$_SESSION['idkurir'] = $yasin['idkurir'];
 			?> <script>window.location='kurir/index.php'</script> <?php
 		}else{
-			?><script>alert('Gagal Login');window.location="index.php"; </script><?php
+			?><script>window.location="login.php?m=gagal"; </script><?php
 		}			
 	}
 ?>

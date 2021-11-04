@@ -15,44 +15,10 @@
               <form action="../assets/report/rpendapatan.php" target="_blank" method="post">
                 <div class="input-group input-group-mb" style="margin-bottom: 10px">
                 <div class="input-group-prepend" style="width: 50%">
-                    <span class="input-group-text" style="width: 100%">Bulan</span>
+                    <span class="input-group-text" style="width: 100%">Hari</span>
                 </div>
-                <select name="bulan" class="form-control" required>
-                  <option value="">Pilih</option>
-                  <?php
-                    $ahay = mysqli_query($kon, "SELECT DISTINCT MONTH(tglbeli) as bulan FROM `beli` ORDER BY bulan ASC");
-                    while($baris = mysqli_fetch_array($ahay)) {
-                    $bulan = $baris['bulan']; 
-                      if($bulan == 1){ $namabulan = "Januari";
-                        }else if($bulan == 2){ $namabulan = "Februari";
-                        }else if($bulan == 3){ $namabulan = "Maret";
-                        }else if($bulan == 4){ $namabulan = "April";
-                        }else if($bulan == 5){ $namabulan = "Mei";
-                        }else if($bulan == 6){ $namabulan = "Juni";
-                        }else if($bulan == 7){ $namabulan = "Juli";
-                        }else if($bulan == 8){ $namabulan = "Agustus";
-                        }else if($bulan == 9){ $namabulan = "September";
-                        }else if($bulan == 10){ $namabulan = "Oktober";
-                        }else if($bulan == 11){ $namabulan = "November";
-                        }else if($bulan == 12){ $namabulan = "Desember";
-                        } ?><option value="<?= $baris[bulan] ?>"><?= $namabulan; ?></option> 
-                      }
-                    <?php } ?>
-                </select>
+                <input type="date" class="form-control" name="hari" value="<?= date('Y-m-d') ?>">
               </div>
-                <div class="input-group input-group-mb" style="margin-bottom: 10px">
-                    <div class="input-group-prepend" style="width: 50%">
-                        <span class="input-group-text" style="width: 100%">Tahun</span>
-                    </div>
-                <select name="tahun" class="form-control">
-                <?php
-                    $ahay = mysqli_query($kon, "SELECT DISTINCT YEAR(tglbeli) as tahun FROM `beli` ORDER BY tahun ASC");
-                    while($baris = mysqli_fetch_array($ahay)) {
-                    $tahun = $baris['tahun']; 
-                        ?><option value="<?= $baris[tahun] ?>"><?= $tahun; ?></option> 
-                <?php } ?>
-                </select>
-                </div>
             </div>
             <div class="modal-footer justify-content-between">
               <button type="reset" class="btn btn-danger"><i class="fas fa-sync-alt"></i></button>
@@ -72,7 +38,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h2 style="display:inline;">Data Pendapatan</h2>
+                <h2 style="display:inline;">Data Pendapatan Harian</h2>
                 <button style="float: right" class="btn btn-primary" type="button" data-toggle="modal" data-target="#modal-sm" title="Cetak"><i class="fas fa-file-pdf"></i></button>
               </div>
               <!-- /.card-header -->
@@ -81,41 +47,27 @@
                   <thead class="table-dark">
                     <tr class="text-center">
                         <th>No</th>
-                        <th>Periode</th>
-                        <th>Laba Kotor</th>
-                        <th>Biaya Pengeluaran</th>
-                        <th>Laba Bersih</th>
+                        <th>Hari</th>
+                        <th>Pembelian Pelanggan</th>
+                        <th>Pembelian Reseller</th>
+                        <th>Total Pendapatan</th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php 
                       $no = 1;
-                      $query = mysqli_query($kon, "SELECT tglbeli, MONTH(tglbeli) as bulan, YEAR(tglbeli) as tahun FROM `beli` WHERE status = 'Diterima' GROUP BY bulan ORDER BY tglbeli ASC");
+                      $query = mysqli_query($kon, "SELECT tglbeli, DATE(tglbeli) as hari FROM beli GROUP BY hari ORDER BY hari ASC");
                       while($data = mysqli_fetch_array($query)){
-                        $bulan = $data['bulan'];
-                        $tahun = $data['tahun'];
-                        $woy = mysqli_fetch_array(mysqli_query($kon, "SELECT SUM(total) as total FROM beli WHERE MONTH(tglbeli) = '$bulan' AND YEAR(tglbeli) = '$tahun' AND status = 'Diterima'"));
-                        $woy1 = mysqli_fetch_array(mysqli_query($kon, "SELECT SUM(total) as total FROM pengeluaran WHERE MONTH(tgl) = '$bulan' AND YEAR(tgl) = '$tahun'"));
+                        $hari = $data['hari'];
+                        $pendapatan1 = mysqli_fetch_array(mysqli_query($kon, "SELECT level, SUM(total) as total FROM beli INNER JOIN user ON beli.id = user.id WHERE DATE(tglbeli) = '$hari' AND level = 'pelanggan'"));
+                        $pendapatan2 = mysqli_fetch_array(mysqli_query($kon, "SELECT level, SUM(total) as total FROM beli INNER JOIN user ON beli.id = user.id WHERE DATE(tglbeli) = '$hari' AND level = 'reseller'"));
                         ?>
                           <tr class="text-center">
                           <td><?= $no++ ?></td> 
-                          <td><?php 
-                            if($data['bulan'] == 6){echo 'Juni'.' - '. $data['tahun']; }
-                            else if($data['bulan'] == 7){echo 'Juli'.' - '. $data['tahun']; }
-                            else if($data['bulan'] == 8){echo 'Agustus'.' - '. $data['tahun']; }
-                            else if($data['bulan'] == 9){echo 'September'.' - '. $data['tahun']; }
-                            else if($data['bulan'] == 10){echo 'Oktober'.' - '. $data['tahun']; }
-                            else if($data['bulan'] == 11){echo 'November'.' - '. $data['tahun']; }
-                            else if($data['bulan'] == 12){echo 'Desember'.' - '. $data['tahun']; }
-                            else if($data['bulan'] == 1){echo 'Januari'.' - '. $data['tahun']; }
-                            else if($data['bulan'] == 2){echo 'Februari'.' - '. $data['tahun']; }
-                            else if($data['bulan'] == 3){echo 'Maret'.' - '. $data['tahun']; }
-                            else if($data['bulan'] == 4){echo 'April'.' - '. $data['tahun']; }
-                            else if($data['bulan'] == 5){echo 'Mei'.' - '. $data['tahun']; }
-                          ?></td>
-                          <td>Rp. <?= number_format($woy['total'],0,'.','.') ?></td>
-                          <td>Rp. <?= number_format($woy1['total'],0,'.','.') ?></td>
-                          <td>Rp. <?= number_format($woy['total']-$woy1['total'],0,'.','.') ?></td>
+                          <td><?= tgl_indo($hari) ?></td>
+                          <td>Rp. <?= number_format($pendapatan1['total'],0,'.','.') ?></td>
+                          <td>Rp. <?= number_format($pendapatan2['total'],0,'.','.') ?></td>
+                          <td>Rp. <?= number_format($pendapatan1['total']+$pendapatan2['total'],0,'.','.') ?></td>
                         <?php 
                       }
                     ?>

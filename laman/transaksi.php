@@ -15,7 +15,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <form action="../assets/report/rbeli.php" target="_blank" method="post">
+              <form action="../assets/report/rtransaksi.php" target="_blank" method="post">
               <div class="input-group input-group-mb" style="margin-bottom: 10px">
                 <div class="input-group-prepend" style="width: 50%">
                     <span class="input-group-text" style="width: 100%">Bulan</span>
@@ -23,7 +23,7 @@
                 <select name="bulan" class="form-control">
                   <option value="">Pilih</option>
                   <?php
-                    $ahay = mysqli_query($kon, "SELECT DISTINCT MONTH(tglbeli) as bulan FROM `beli` INNER JOIN ongkir ON beli.idongkir = ongkir.idongkir INNER JOIN user ON beli.id = user.id WHERE level = 'pelanggan' ORDER BY bulan ASC");
+                    $ahay = mysqli_query($kon, "SELECT DISTINCT MONTH(tglbeli) as bulan FROM `beli` INNER JOIN ongkir ON beli.idongkir = ongkir.idongkir INNER JOIN user ON beli.id = user.id WHERE level = 'reseller' ORDER BY bulan ASC");
                     while($baris = mysqli_fetch_array($ahay)) {
                     $bulan = $baris['bulan']; 
                       if($bulan == 1){ $namabulan = "Januari";
@@ -49,7 +49,7 @@
                     </div>
                 <select name="tahun" class="form-control">
                 <?php
-                    $ahay = mysqli_query($kon, "SELECT DISTINCT YEAR(tglbeli) as tahun FROM `beli` INNER JOIN ongkir ON beli.idongkir = ongkir.idongkir INNER JOIN user ON beli.id = user.id WHERE level = 'pelanggan' ORDER BY tahun DESC");
+                    $ahay = mysqli_query($kon, "SELECT DISTINCT YEAR(tglbeli) as tahun FROM `beli` INNER JOIN ongkir ON beli.idongkir = ongkir.idongkir INNER JOIN user ON beli.id = user.id WHERE level = 'reseller' ORDER BY tahun DESC");
                     while($baris = mysqli_fetch_array($ahay)) {
                     $tahun = $baris['tahun']; 
                         ?><option value="<?= $baris[tahun] ?>"><?= $tahun; ?></option> 
@@ -87,7 +87,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h2 style="display:inline;">Data Pembelian Pelanggan</h2>
+                <h2 style="display:inline;">Data Pembelian Reseller</h2>
                 <button style="float: right" class="btn btn-primary" type="button" data-toggle="modal" data-target="#modal-sm" title="Cetak"><i class="fas fa-file-pdf"></i></button>
               </div>
               <!-- /.card-header -->
@@ -97,7 +97,7 @@
                     <tr class="text-center">
                         <th>No</th>
                         <th>Tanggal</th>
-                        <th>Pembeli</th>
+                        <th>Reseller</th>
                         <th>Total</th>
                         <th>Tujuan</th>
                         <th>Bukti Pembayaran</th>
@@ -108,7 +108,7 @@
                   <tbody>
                     <?php 
                       $no = 1;
-                      $query = mysqli_query($kon, "SELECT * FROM `beli` INNER JOIN ongkir ON beli.idongkir = ongkir.idongkir INNER JOIN user ON beli.id = user.id WHERE level = 'pelanggan' ORDER BY idbeli DESC");
+                      $query = mysqli_query($kon, "SELECT * FROM `beli` INNER JOIN ongkir ON beli.idongkir = ongkir.idongkir INNER JOIN user ON beli.id = user.id WHERE level = 'reseller' ORDER BY idbeli DESC");
                       while($data = mysqli_fetch_array($query)){
                         ?>
                           <tr class="text-center">
@@ -130,8 +130,8 @@
                               echo "<i class='fas fa-clock'></i>";
                             }  ?></td>           
                           <td>
-                            <button class="btn bg-warning" type="button"><a href="beli_edit.php?idbeli=<?= $data['idbeli'] ?>" class="text-white"><i class="far fa-edit"></i></a></button>
-                            <button class="btn bg-orange" onclick="yakin = confirm('Apakah Kamu yakin ingin Menghapus?'); if(yakin){ window.location = 'hapus.php?idbeli=<?= $data['idbeli'] ?>&level=pelanggan';
+                            <button class="btn bg-warning" type="button"><a href="transaksi_edit.php?idbeli=<?= $data['idbeli'] ?>" class="text-white"><i class="far fa-edit"></i></a></button>
+                            <button class="btn bg-orange" onclick="yakin = confirm('Apakah Kamu yakin ingin Menghapus?'); if(yakin){ window.location = 'hapus.php?idbeli=<?= $data['idbeli'] ?>&level=reseller';
                               }" type="button"><i class="fas fa-trash"></i></button>
                           </td>
                         <?php 

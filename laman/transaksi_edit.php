@@ -12,7 +12,7 @@
           <div class="col-md-6 col-sm-12">
             <div class="card">
               <div class="card-header">
-                <h2 style="display:inline;"><button class="btn btn-default" type="button" data-toggle="tooltip" data-placement="bottom" title="Ubah"><i class="fas fa-edit"></i></button> Data Pembelian Pelanggan</h2>
+                <h2 style="display:inline;"><button class="btn btn-default" type="button" data-toggle="tooltip" data-placement="bottom" title="Ubah"><i class="fas fa-edit"></i></button> Data Pembelian Reseller</h2>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -28,7 +28,7 @@
                 </div>
                 <div class="card-footer">
                   <button type="submit" name="simpan" class="btn btn-dark" data-toggle="tooltip" data-placement="bottom" title="Simpan"><i class="far fa-handshake"></i></button>
-                  <button type="button" onclick="window.location='beli.php';" data-toggle="tooltip" data-placement="bottom" title="Kembali" class="btn btn-danger float-right">
+                  <button type="button" onclick="window.location='transaksi.php';" data-toggle="tooltip" data-placement="bottom" title="Kembali" class="btn btn-danger float-right">
                     <i class="far fa-window-close"></i></button>
                 </div>
             	</div>
@@ -48,9 +48,9 @@
     $user = mysqli_query($kon,"SELECT * FROM `beli` INNER JOIN user ON beli.id = user.id WHERE idbeli = '$idbeli'");
     $row = mysqli_fetch_array($user);
     if($ubah){
-      ?> <script>alert('Berhasil Diperbaharui');window.open("https://wa.me/?phone=<?= $row['telp'] ?>&text=Halo, <?= $row['nama'] ?>.%20Kami%20dari%20AbsoluteZero%20memberitahukan%20bahwa%0A%0APembeliaan%20Anda%20dengan%20_No.Transaksi%20:%20<?= $row['idbeli'] ?>_%20telah%20*DITERIMA*.");window.location='beli.php';</script> <?php
+      ?> <script>alert('Berhasil Diperbaharui');window.open("https://wa.me/?phone=<?= $row['telp'] ?>&text=Halo, <?= $row['nama'] ?>.%20Kami%20dari%20AbsoluteZero%20memberitahukan%20bahwa%0A%0APembeliaan%20Anda%20dengan%20_No.Transaksi%20:%20<?= $row['idbeli'] ?>_%20telah%20*DITERIMA*.");window.location='transaksi.php';</script> <?php
     }else{
-      ?> <script>alert('Gagal Diperbaharui');window.location='beli_edit.php?idbeli=<?=$idbeli?>';</script> <?php
+      ?> <script>alert('Gagal Diperbaharui');window.location='transaksi_edit.php?idbeli=<?=$idbeli?>';</script> <?php
     }
   }
  ?>

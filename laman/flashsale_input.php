@@ -18,7 +18,7 @@
                     <input type="datetime-local" name="waktu" class="form-control" value="<?php echo date('Y-m-d\TH:i') ?>">
                   </div>
                   <div class="form-group">
-                    <label>Nama Bibit</label>
+                    <label>Nama Barang</label>
                     <select name="idtanam" class="form-control" onchange='ubah(this.value)' required>
                       <option disabled selected>Pilih</option>
                     <?php

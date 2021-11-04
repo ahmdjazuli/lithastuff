@@ -57,7 +57,12 @@
 				    foreach ($_SESSION['keranjang'] as $idtanam => $jumlah) :
 				    $tanam = mysqli_query($kon, "SELECT * FROM tanam WHERE idtanam = '$idtanam'"); 
 					$pecah = mysqli_fetch_assoc($tanam);
-					$subharga = $pecah['harga']*$jumlah;
+						if($memori['level']=='reseller'){ 
+							$bisajadi = $pecah['modal']; 
+						}else{ 
+							$bisajadi = $pecah['harga']; 
+						}
+					$subharga = $bisajadi*$jumlah;
 					?>
 					<tr class="edd_cart_item" id="edd_cart_item_0_25" data-download-id="25">
 						<td class="edd_cart_item_name">
@@ -66,9 +71,17 @@
 							</div>
 							<span class="edd_checkout_cart_item_title"><?= $pecah['namatanam'] ?></span>
 						</td>
-						<td>Rp. <?= $pecah['harga'] ?> </td>
+						<td>Rp. <?php if($memori['level']=='reseller'){ 
+							echo number_format($pecah['modal'],0,',','.'); 
+						}else{ 
+							echo number_format($pecah['harga'],0,',','.'); 
+						} ?></td>
 						<td><?= $jumlah ?> </td>
-						<td>Rp. <?= $pecah['harga']*$jumlah ?></td>
+						<td>Rp. <?php if($memori['level']=='reseller'){ 
+							echo number_format($pecah['modal']*$jumlah,0,',','.'); 
+						}else{ 
+							echo number_format($pecah['harga']*$jumlah,0,',','.'); 
+						} ?></td>
 					</tr>
 				<?php $totalbelanja+=$subharga; $no++; ?>
 				<?php endforeach ?>
@@ -78,7 +91,7 @@
 				<tr>
 					<th colspan="3">Total: </th>
 					<th >
-					<span>Rp. <?= $totalbelanja ?></span>
+					<span>Rp. <?= number_format($totalbelanja,0,',','.'); ?></span>
 					</th>
 				</tr>
 				</tfoot>
@@ -91,7 +104,11 @@
 					<legend>Info Pembeli dan Pilih Ongkir</legend>
 					<div class="row">
 						<div class="col-md-6 col-sm-12">
-							<p><label>Nama Pelanggan *</label>
+							<p><label>Nama <?php if($memori['level']=='reseller'){ 
+							echo 'Reseller';  
+						}else{ 
+							echo 'Pelanggan'; 
+						} ?> *</label>
 							<input type="hidden" name="id" value="<?= $memori['id'] ?>">
 							<input class="form-control" type="text" value="<?= $memori['nama'] ?>" readonly></p>
 						</div>

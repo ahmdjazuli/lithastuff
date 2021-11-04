@@ -4,10 +4,10 @@
 			<div class="col-md-12 text-center">
 				<div class="text-homeimage">
 					<div class="maintext-image" data-scrollreveal="enter right over 1.5s after 0.1s" >
-						 <p style="font-size:65px;">Rasa itu seperti tanaman,</p> 
+						 <p style="font-size:65px;">Lithastuff</p> 
 					</div>
 					<div class="subtext-image" data-scrollreveal="enter left over 1.7s after 0.3s">
-						 <p style="font-size:30px;">harus dirawat dan dijaga kalau tidak ya pasti mati dan hilang.</p> 
+						 <p style="font-size:30px;">Memakai pakaian yang pantas merupakan bentuk menghargai diri sendiri.</p> 
 					</div>
 				</div>
 			</div>

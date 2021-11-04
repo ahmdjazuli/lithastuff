@@ -84,7 +84,7 @@
             <a class="nav-link" href="tanammasuk.php" data-toggle="tooltip" title="Data Barang Masuk"><i class="fas fa-shopping-basket"></i></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="tanamrusak.php" data-toggle="tooltip" title="Data Barang Rusak"><i class="fas fa-exclamation-triangle"></i></a>
+            <a class="nav-link" href="transaksi.php" data-toggle="tooltip" title="Data Pembelian Reseller"><i class="fas fa-store-alt"></i></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="tanamrawat.php" data-toggle="tooltip" title="Data Barang Rawat"><i class="fab fa-pagelines"></i></a>
@@ -99,7 +99,10 @@
             <a class="nav-link" href="kirim.php" data-toggle="tooltip" title="Pengiriman"><i class="fas fa-shipping-fast"></i></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="pendapatan.php" data-toggle="tooltip" title="Pendapatan"><i class="fas fa-dollar-sign"></i></a>
+            <a class="nav-link" href="pendapatan.php" data-toggle="tooltip" title="Pendapatan Harian"><i class="fas fa-dollar-sign"></i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="pendapatan1.php" data-toggle="tooltip" title="Pendapatan Bulanan"><i class="fas fa-money-check"></i></a>
           </li>
         </ul>
       </div>

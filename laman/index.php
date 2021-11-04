@@ -7,14 +7,14 @@
    $kurir   = mysqli_num_rows(mysqli_query($kon, "SELECT * FROM kurir"));
    $kirim = mysqli_num_rows(mysqli_query($kon, "SELECT * FROM kirim"));
    $flashsale     = mysqli_num_rows(mysqli_query($kon, "SELECT * FROM flashsale"));
-   $tanamrawat     = mysqli_num_rows(mysqli_query($kon, "SELECT * FROM tanamrawat"));
+   $pendapatan     = mysqli_num_rows(mysqli_query($kon, "SELECT DATE(tglbeli) as hari FROM beli GROUP BY hari"));
+   $pendapatan1     = mysqli_num_rows(mysqli_query($kon, "SELECT MONTH(tglbeli) as bulan FROM beli GROUP BY bulan"));
    $ongkir   = mysqli_num_rows(mysqli_query($kon, "SELECT * FROM ongkir"));
-   $tanamrusak   = mysqli_num_rows(mysqli_query($kon, "SELECT * FROM tanamrusak"));
+   $reseller   = mysqli_num_rows(mysqli_query($kon, "SELECT * FROM `beli` INNER JOIN ongkir ON beli.idongkir = ongkir.idongkir INNER JOIN user ON beli.id = user.id WHERE level = 'reseller'"));
    $tanammasuk      = mysqli_num_rows(mysqli_query($kon, "SELECT * FROM tanammasuk"));
-   $beli   = mysqli_num_rows(mysqli_query($kon, "SELECT * FROM beli"));
+   $beli   = mysqli_num_rows(mysqli_query($kon, "SELECT * FROM `beli` INNER JOIN ongkir ON beli.idongkir = ongkir.idongkir INNER JOIN user ON beli.id = user.id WHERE level = 'pelanggan'"));
    $tanam      = mysqli_num_rows(mysqli_query($kon, "SELECT * FROM tanam"));
    $user      = mysqli_num_rows(mysqli_query($kon, "SELECT * FROM user WHERE NOT level='admin'"));
-   $laba      = mysqli_num_rows(mysqli_query($kon, "SELECT tglbeli, MONTH(tglbeli) as bulan, YEAR(tglbeli) as tahun FROM `beli` GROUP BY bulan ORDER BY tglbeli ASC"));
 ?>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -104,23 +104,10 @@
             <a href="user.php">
             <div class="info-box <?= $se['warna_report'] ?>">
               <span class="info-box-icon" style="font-size: 50px">
-                <i class="fas fa-exclamation-triangle"></i></span>
+                <i class="fas fa-store-alt"></i></span>
               <div class="info-box-content">
-                <span class="info-box-text"><b>Bibit Rusak</b></span>
-                <span class="info-box-number" style="font-size: 25px;"><?= $tanamrusak ?></span>
-              </div>
-            </div>
-            </a>
-          </div>
-
-          <div class="col-md-3 col-sm-6 col-12">
-            <a href="user.php">
-            <div class="info-box <?= $se['warna_report'] ?>">
-              <span class="info-box-icon" style="font-size: 50px">
-                <i class="fab fa-pagelines"></i></span>
-              <div class="info-box-content">
-                <span class="info-box-text"><b>Bibit Rawat</b></span>
-                <span class="info-box-number" style="font-size: 25px;"><?= $tanamrawat ?></span>
+                <span class="info-box-text"><b>Pembelian Reseller</b></span>
+                <span class="info-box-number" style="font-size: 25px;"><?= $reseller ?></span>
               </div>
             </div>
             </a>
@@ -171,8 +158,21 @@
               <span class="info-box-icon" style="font-size: 50px">
                 <i class="fas fa-dollar-sign"></i></span>
               <div class="info-box-content">
-                <span class="info-box-text"><b>Pendapatan</b></span>
-                <span class="info-box-number" style="font-size: 25px;"><?= $laba ?></span>
+                <span class="info-box-text"><b>Pendapatan Harian</b></span>
+                <span class="info-box-number" style="font-size: 25px;"><?= $pendapatan ?></span>
+              </div>
+            </div>
+            </a>
+          </div>
+
+          <div class="col-md-3 col-sm-6 col-12">
+            <a href="user.php">
+            <div class="info-box <?= $se['warna_report'] ?>">
+              <span class="info-box-icon" style="font-size: 50px">
+                <i class="fas fa-dollar-sign"></i></span>
+              <div class="info-box-content">
+                <span class="info-box-text"><b>Pendapatan Bulanan</b></span>
+                <span class="info-box-number" style="font-size: 25px;"><?= $pendapatan1 ?></span>
               </div>
             </div>
             </a>

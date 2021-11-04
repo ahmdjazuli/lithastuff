@@ -33,7 +33,7 @@
 		<div class="properties-box">
 		<div class="card">
           <div class="card-header">
-            <h2 style="display:inline;"><i class="fas fa-user-circle"></i> Ubah Data</h2> </div>
+            <h2 style="display:inline;"><i class="fas fa-user-circle"></i> Ubah Data Pengguna (<?= $memori['level'] ?>)</h2> </div>
           	<div class="card-body">
                 <form action="" method="POST">
                   <div class="form-group">

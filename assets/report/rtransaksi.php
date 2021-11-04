@@ -6,22 +6,22 @@ require "../../tgl_indo.php";
 	$status = $_REQUEST['status'];
 
 	if($bulan AND $tahun AND empty($status) ){
-		$result = mysqli_query($kon, "SELECT * FROM `beli` INNER JOIN ongkir ON beli.idongkir = ongkir.idongkir INNER JOIN user ON beli.id = user.id WHERE MONTH(tglbeli) = '$bulan' AND YEAR(tglbeli) = '$tahun' AND level = 'pelanggan' ORDER BY tglbeli ASC");
+		$result = mysqli_query($kon, "SELECT * FROM `beli` INNER JOIN ongkir ON beli.idongkir = ongkir.idongkir INNER JOIN user ON beli.id = user.id WHERE MONTH(tglbeli) = '$bulan' AND YEAR(tglbeli) = '$tahun' AND level = 'reseller' ORDER BY tglbeli ASC");
 	}else if($bulan AND $tahun AND $status){
-		$result = mysqli_query($kon, "SELECT * FROM `beli` INNER JOIN ongkir ON beli.idongkir = ongkir.idongkir INNER JOIN user ON beli.id = user.id WHERE MONTH(tglbeli) = '$bulan' AND YEAR(tglbeli) = '$tahun' AND status = '$status' AND level = 'pelanggan' ORDER BY tglbeli ASC");
+		$result = mysqli_query($kon, "SELECT * FROM `beli` INNER JOIN ongkir ON beli.idongkir = ongkir.idongkir INNER JOIN user ON beli.id = user.id WHERE MONTH(tglbeli) = '$bulan' AND YEAR(tglbeli) = '$tahun' AND status = '$status' AND level = 'reseller' ORDER BY tglbeli ASC");
 	}else{
-		?> <script>alert('Data Tidak Ditemukan');window.location='../../laman/beli.php';</script> <?php
+		?> <script>alert('Data Tidak Ditemukan');window.location='../../laman/transaksi.php';</script> <?php
 	}
 
 	if(mysqli_num_rows($result)==0){
-		?> <script>alert('Data Tidak Ditemukan');window.location='../../laman/beli.php';</script> <?php
+		?> <script>alert('Data Tidak Ditemukan');window.location='../../laman/transaksi.php';</script> <?php
 	}
 
 	require('kepala.php');
 ?>
 
 <style type="text/css" media="print"> @page { size: landscape; } </style>
-<h3 style="text-align: center;">Laporan Data Pembelian Bibit</h3>
+<h3 style="text-align: center;">Laporan Data Pembelian Reseller</h3>
 <h5 class="text-center">
 	<?php 
 	if($bulan AND $tahun AND empty($status)){
@@ -39,7 +39,7 @@ require "../../tgl_indo.php";
       <tr>
         <th>No</th>
         <th>Tanggal</th>
-	    <th>Pembeli</th>
+	    <th>Reseller</th>
 	    <th>Total</th>
 	    <th>Tujuan</th>
 	    <th>Bukti Pembayaran</th>

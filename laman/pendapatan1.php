@@ -12,15 +12,15 @@
               </button>
             </div>
             <div class="modal-body">
-              <form action="../assets/report/rtanamrusak.php" target="_blank" method="post">
-              <div class="input-group input-group-mb" style="margin-bottom: 10px">
+              <form action="../assets/report/rpendapatan1.php" target="_blank" method="post">
+                <div class="input-group input-group-mb" style="margin-bottom: 10px">
                 <div class="input-group-prepend" style="width: 50%">
                     <span class="input-group-text" style="width: 100%">Bulan</span>
                 </div>
                 <select name="bulan" class="form-control" required>
                   <option value="">Pilih</option>
                   <?php
-                    $ahay = mysqli_query($kon, "SELECT DISTINCT MONTH(tgl) as bulan FROM `tanamrusak` ORDER BY bulan ASC");
+                    $ahay = mysqli_query($kon, "SELECT DISTINCT MONTH(tglbeli) as bulan FROM `beli` ORDER BY bulan ASC");
                     while($baris = mysqli_fetch_array($ahay)) {
                     $bulan = $baris['bulan']; 
                       if($bulan == 1){ $namabulan = "Januari";
@@ -46,7 +46,7 @@
                     </div>
                 <select name="tahun" class="form-control">
                 <?php
-                    $ahay = mysqli_query($kon, "SELECT DISTINCT YEAR(tgl) as tahun FROM `tanamrusak` ORDER BY tahun ASC");
+                    $ahay = mysqli_query($kon, "SELECT DISTINCT YEAR(tglbeli) as tahun FROM `beli` ORDER BY tahun ASC");
                     while($baris = mysqli_fetch_array($ahay)) {
                     $tahun = $baris['tahun']; 
                         ?><option value="<?= $baris[tahun] ?>"><?= $tahun; ?></option> 
@@ -72,9 +72,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h2 style="display:inline;">Data Bibit Rusak</h2>
-                <button style="float: right;margin-left: 5px" class="btn btn-success" type="button" data-toggle="tooltip" data-placement="bottom" title="Tambah"><a href="tanamrusak_input.php" class="text-white"><i class="fas fa-folder-plus"></i></a>
-                </button>
+                <h2 style="display:inline;">Data Pendapatan Bulanan</h2>
                 <button style="float: right" class="btn btn-primary" type="button" data-toggle="modal" data-target="#modal-sm" title="Cetak"><i class="fas fa-file-pdf"></i></button>
               </div>
               <!-- /.card-header -->
@@ -83,32 +81,49 @@
                   <thead class="table-dark">
                     <tr class="text-center">
                         <th>No</th>
-                        <th>Tanggal</th>
-                        <th>Nama Bibit</th>
-                        <th>Jumlah</th>
-                        <th>Foto</th>
-                        <th>Catatan</th>
-                        <th class="hide"></th>
+                        <th>Periode</th>
+                        <th>Pembelian Pelanggan</th>
+                        <th>Pembelian Reseller</th>
+                        <th>Laba Kotor</th>
+                        <th>Barang Masuk</th>
+                        <th>Pengeluaran</th>
+                        <th>Laba Bersih</th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php 
                       $no = 1;
-                      $query = mysqli_query($kon, "SELECT * FROM tanamrusak INNER JOIN tanam ON tanamrusak.idtanam = tanam.idtanam ORDER BY tgl ASC");
+                      $query = mysqli_query($kon, "SELECT tglbeli, MONTH(tglbeli) as bulan, YEAR(tglbeli) as tahun FROM `beli` WHERE status = 'Diterima' GROUP BY bulan ORDER BY tglbeli ASC");
                       while($data = mysqli_fetch_array($query)){
+                        $bulan = $data['bulan'];
+                        $tahun = $data['tahun'];
+                        $woy = mysqli_fetch_array(mysqli_query($kon, "SELECT SUM(total) as total FROM beli INNER JOIN user ON beli.id = user.id WHERE MONTH(tglbeli) = '$bulan' AND YEAR(tglbeli) = '$tahun' AND level = 'pelanggan'"));
+                        $woy1 = mysqli_fetch_array(mysqli_query($kon, "SELECT SUM(total) as total FROM beli INNER JOIN user ON beli.id = user.id WHERE MONTH(tglbeli) = '$bulan' AND YEAR(tglbeli) = '$tahun' AND level = 'reseller'"));
+                        $woy2 = mysqli_fetch_array(mysqli_query($kon, "SELECT SUM(hargamasuk*jumlah) as total FROM tanammasuk WHERE MONTH(tgl) = '$bulan' AND YEAR(tgl) = '$tahun'"));
+                        $woy3 = mysqli_fetch_array(mysqli_query($kon, "SELECT SUM(total) as total FROM pengeluaran WHERE MONTH(tgl) = '$bulan' AND YEAR(tgl) = '$tahun'"));
                         ?>
                           <tr class="text-center">
-                          <td><?= $no++ ?></td>        
-                          <td><?= haribulantahun($data['tgl'],true)?></td>             
-                          <td><?= $data['namatanam'] ?></td>
-                          <td><?= $data['jumlah'] ?></td>
-                          <td><a target="_blank" href="../img/<?= $data['foto'] ?>"><img src="../img/<?= $data['gambar'] ?>" width='60px'></a></td>
-                          <td><?= $data['catatan'] ?></td>
-                          <td>
-                            <button class="btn bg-warning" type="button"><a href="tanamrusak_edit.php?idtanamrusak=<?= $data['idtanamrusak'] ?>" class="text-white"><i class="far fa-edit"></i></a></button>
-                            <button class="btn bg-orange" onclick="yakin = confirm('Apakah Kamu yakin ingin Menghapus?'); if(yakin){ window.location = 'hapus.php?idtanamrusak=<?= $data['idtanamrusak'] ?>';
-                              }" type="button"><i class="fas fa-trash"></i></button>
-                          </td>
+                          <td><?= $no++ ?></td> 
+                          <td><?php 
+                            if($data['bulan'] == 6){echo 'Juni'.' - '. $data['tahun']; }
+                            else if($data['bulan'] == 7){echo 'Juli'.' - '. $data['tahun']; }
+                            else if($data['bulan'] == 8){echo 'Agustus'.' - '. $data['tahun']; }
+                            else if($data['bulan'] == 9){echo 'September'.' - '. $data['tahun']; }
+                            else if($data['bulan'] == 10){echo 'Oktober'.' - '. $data['tahun']; }
+                            else if($data['bulan'] == 11){echo 'November'.' - '. $data['tahun']; }
+                            else if($data['bulan'] == 12){echo 'Desember'.' - '. $data['tahun']; }
+                            else if($data['bulan'] == 1){echo 'Januari'.' - '. $data['tahun']; }
+                            else if($data['bulan'] == 2){echo 'Februari'.' - '. $data['tahun']; }
+                            else if($data['bulan'] == 3){echo 'Maret'.' - '. $data['tahun']; }
+                            else if($data['bulan'] == 4){echo 'April'.' - '. $data['tahun']; }
+                            else if($data['bulan'] == 5){echo 'Mei'.' - '. $data['tahun']; }
+                          ?></td>
+                          <td>Rp. <?= number_format($woy['total'],0,'.','.') ?></td>
+                          <td>Rp. <?= number_format($woy1['total'],0,'.','.') ?></td>
+                          <td>Rp. <?= number_format($woy['total']+$woy1['total'],0,'.','.') ?></td>
+                          <td>Rp. <?= number_format($woy2['total'],0,'.','.') ?></td>
+                          <td>Rp. <?= number_format($woy3['total'],0,'.','.') ?></td>
+                          <td>Rp. <?= number_format($woy['total']+$woy1['total']-$woy2['total']-$woy3['total'],0,'.','.') ?></td>
                         <?php 
                       }
                     ?>

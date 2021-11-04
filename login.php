@@ -87,7 +87,7 @@
 	.login-html .sign-in:checked + .tab,
 	.login-html .sign-up:checked + .tab{
 		color:#fff;
-		border-color:#1161ee;
+		border-color:#fdddb7;
 	}
 	.login-form{
 		min-height:345px;
@@ -120,7 +120,7 @@
 		font-size:12px;
 	}
 	.login-form .group .button{
-		background:#1161ee;
+		background:#fdddb7;
 	}
 	.login-form .group label .icon{
 		width:15px;
@@ -208,7 +208,8 @@
 					<input type="password" class="input" name="password">
 				</div>
 				<div class="group">
-					<input type="submit" name="go" class="button" value="Go">
+					<input type="submit" name="go" style="color:#342e26;font-weight:bolder; cursor: pointer;" class="button" value="Go"><br>
+					<input type="button" style="background-color:#342e26;color: #fdddb7;font-weight:bolder; cursor: pointer;" class="button" value="Back" onclick="window.location='./'">
 				</div>
 				<div class="hr"></div>
 				</form>
@@ -245,7 +246,7 @@
 					<input type="email" class="input" name="email">
 				</div>
 				<div class="group">
-					<input type="submit" name="daftar" class="button" value="Daftar Sekarang!">
+					<input type="submit" name="daftar" style="color:#342e26;font-weight:bolder; cursor: pointer;" class="button" value="Daftar Sekarang!">
 				</div>
 				<div class="hr"></div>
 				</form>

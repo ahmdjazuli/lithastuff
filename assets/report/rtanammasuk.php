@@ -16,7 +16,7 @@ require "../../tgl_indo.php";
 
 	require('kepala.php');
 ?>
-<style type="text/css" media="print"> @page { size: portrait; } </style>
+<style type="text/css" media="print"> @page { size: landscape; } </style>
 <h3 style="text-align: center;">Laporan Data Barang Masuk</h3>
 <h5 class="text-center">
 	<?php 
@@ -25,7 +25,7 @@ require "../../tgl_indo.php";
 	} ?>
 </h5>
 
-<div class="container">
+<div class="container-fluid">
   <table class="table table-sm" border="1px" style="font-weight: 400;">
     <thead class="text-center">
       <tr>

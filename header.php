@@ -66,6 +66,11 @@
 				<li class="propClone"><a href="pengiriman.php">Cek Pengiriman</a></li>
 				<li class="propClone"><a href="profil.php">Profil</a></li>
 				<li class="propClone"><a href="logout.php">Logout</a></li><?php
+			}else if($memori['level']=='reseller'){ ?>
+				<li class="propClone"><a href="riwayatbeli.php">Riwayat Pembelian</a></li>
+				<li class="propClone"><a href="pengiriman.php">Cek Pengiriman</a></li>
+				<li class="propClone"><a href="profil.php">Profil</a></li>
+				<li class="propClone"><a href="logout.php">Logout</a></li><?php
 			}else{ ?>
 				<li class="propClone"><a href="login.php">Login</a></li>
 			<?php } ?>

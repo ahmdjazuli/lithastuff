@@ -26,20 +26,19 @@
 		mysqli_query($kon, "DELETE FROM tanammasuk WHERE idtanammasuk='$_REQUEST[idtanammasuk]'"); 
 		?><script>window.location='tanammasuk.php'</script><?php
 	// beli
-	}else if (isset($_GET['idbeli'])) {
+	}else if (isset($_GET['idbeli']) AND $_GET['level'] == 'pelanggan') {
 		$query = mysqli_query($kon, "SELECT * FROM beli WHERE idbeli='$_REQUEST[idbeli]'");
 		$data = mysqli_fetch_array($query);
 		unlink('../img/'.$data['bukti']);
 		mysqli_query($kon, "DELETE FROM beli WHERE idbeli='$_REQUEST[idbeli]'"); 
 		?><script>window.location='beli.php'</script><?php
-	// tanamrusak
-	}else if (isset($_GET['idtanamrusak'])) {
-		mysqli_query($kon, "DELETE FROM tanamrusak WHERE idtanamrusak='$_REQUEST[idtanamrusak]'"); 
-		?><script>window.location='tanamrusak.php'</script><?php
-	// tanamrawat
-	}else if (isset($_GET['idtanamrawat'])) {
-		mysqli_query($kon, "DELETE FROM tanamrawat WHERE idtanamrawat='$_REQUEST[idtanamrawat]'"); 
-		?><script>window.location='tanamrawat.php'</script><?php
+	// transaksi
+	}else if (isset($_GET['idbeli']) AND $_GET['level'] == 'reseller') {
+		$query = mysqli_query($kon, "SELECT * FROM beli WHERE idbeli='$_REQUEST[idbeli]'");
+		$data = mysqli_fetch_array($query);
+		unlink('../img/'.$data['bukti']);
+		mysqli_query($kon, "DELETE FROM beli WHERE idbeli='$_REQUEST[idbeli]'"); 
+		?><script>window.location='transaksi.php'</script><?php
 	// flashsale
 	}else if (isset($_GET['idflash'])) {
 		mysqli_query($kon, "DELETE FROM flashsale WHERE idflash='$_REQUEST[idflash]'"); 
