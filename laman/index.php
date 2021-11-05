@@ -193,9 +193,9 @@
       </div>
     </div>
   </div>  
-</div>
+</div> -->
 
-<div class="col-md-6">
+<div class="col-md-12">
   <div class="card">
     <div class="card-header border-0">
       <div class="d-flex justify-content-between">
@@ -209,7 +209,7 @@
       </div>
     </div>
   </div>  
-</div> -->
+</div>
 
         </div> <!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -221,7 +221,7 @@
 <?php 
   $grafik = mysqli_query($kon, "SELECT MONTH(tglbeli) as bulan, MONTH(tglbeli) as angka, SUM(total) as total FROM beli WHERE status = 'Diterima' GROUP BY bulan");
 
-  $grafik1 = mysqli_query($kon, "SELECT namatanam, terjual FROM tanam");
+  $grafik1 = mysqli_query($kon, "SELECT namatanam, terjual FROM tanam ORDER BY terjual DESC LIMIT 0,5");
 
   $total = [];
   $bulan = [];
@@ -347,13 +347,14 @@
 
   var $salesChart = $('#statistik1')
   var salesChart  = new Chart($salesChart, {
-    type   : 'bar',
+    type   : 'horizontalBar',
     data   : {
       labels  : <?php echo json_encode($namatanam); ?>,
       datasets: [
         {
-          backgroundColor: '#ffc107',
-          borderColor    : '#fd7e14',
+          backgroundColor: '<?= $se['background_grafik1'] ?>',
+          borderColor    : '<?= $se['background_grafik'] ?>',
+          borderWidth: 1.5,
           data           : <?php echo json_encode($terjual); ?>
         }
       ]
@@ -381,13 +382,7 @@
             zeroLineColor: 'transparent'
           },
           ticks    : $.extend({
-            beginAtZero: false,
-            callback: function (value, index, values) {
-              if (value >= 1) {
-                value /= 1
-              }
-              return value + ' Item'
-            }
+            beginAtZero: false
           }, ticksStyle)
         }],
         xAxes: [{

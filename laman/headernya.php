@@ -87,10 +87,7 @@
             <a class="nav-link" href="transaksi.php" data-toggle="tooltip" title="Data Pembelian Reseller"><i class="fas fa-store-alt"></i></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="tanamrawat.php" data-toggle="tooltip" title="Data Barang Rawat"><i class="fab fa-pagelines"></i></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="beli.php" data-toggle="tooltip" title="Data Pembelian Konsumen"><i class="fas fa-shopping-bag"></i></a>
+            <a class="nav-link" href="beli.php" data-toggle="tooltip" title="Data Pembelian Pelanggan"><i class="fas fa-shopping-bag"></i></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="flashsale.php" data-toggle="tooltip" title="Flash Sale"><i class="fab fa-optin-monster"></i></a>

@@ -14,13 +14,14 @@ Bahasa Pemograman :
 3. CSS
 
 Fitur Website :
-1. Template Scorilo (Hijau Putih)
+1. Template Scorilo (Coklat Putih)
 2. Template Admin LTE 3.0 (Navbar Top) 
-3. Multi User (Admin, Pemilik dan Pelanggan)
+3. Multi User (Admin, Kurir, Reseller dan Pelanggan) (4)
 4. Halaman Utama (Belanja, Troli, Checkout, Login)
-5. Data Master terdiri dari : Data Pengguna, Kurir, Ongkir, Bibit dan Biaya Pengeluaran
-6. Data Report terdiri dari : Data Bibit Masuk, Bibit Rusak, Bibit Rawat, Data Pembelian, Flashsale, Pengiriman, Pendapatan dan Nota
+5. Data Master terdiri dari : Data Pengguna, Kurir, Ongkir, Biaya Pengeluaran dan Barang. (5)
+6. Data Report terdiri dari : Data Barang Masuk, Data Pembelian Reseller, Data Pembelian Pelanggan, Flashsale, Pengiriman, Pendapatan Harian, Pendapatan Bulanan, Grafik Statistik Hasil Penjualan terlaris dan Nota Pembayaran (9)
 7. Alert Standar
 8. CRUD Standar
 9. Grafik (Tersedia)
-10. Animasi Loading (Tersedia)
+10. Animasi Loading (Tidak Tersedia)
+11. Pengaturan Website (Fitur Terbaru)

@@ -215,18 +215,18 @@
 				</form>
 			</div>
 			<div class="sign-up-htm">
-				<form method="POST" action="daftar.php">
+				<form method="POST" action="daftar.php" autocomplete="off">
 				<div class="group">
 					<label class="label">Nama Lengkap</label>
 					<input type="text" class="input" name="nama">
 				</div>
 				<div class="group">
-					<label class="label">Username</label>
-					<input type="text" class="input" name="username">
-				</div>
-				<div class="group">
-					<label class="label">Password</label>
-					<input type="password" class="input" name="password">
+					<label class="label">Username dan Password</label>
+					<div class="input-group input-group-mb" style="margin-bottom: 10px">
+					<div class="input-group-prepend" style="width: 50%; float: left;">
+					    <input type="text" class="input" name="username" placeholder="username">
+					</div>
+					<input type="password" class="input" name="password" style="width: 50%">
 				</div>
 				<div class="group">
 					<label class="label">Jenis Kelamin</label>
@@ -244,6 +244,11 @@
 				<div class="group">
 					<label class="label">Email</label>
 					<input type="email" class="input" name="email">
+				</div>
+				<div class="group">
+					<label class="label">Daftar sebagai</label>
+					<input type="radio" name="level" value="pelanggan" checked> Pelanggan
+					<input type="radio" name="level" value="reseller"> Reseller<br>
 				</div>
 				<div class="group">
 					<input type="submit" name="daftar" style="color:#342e26;font-weight:bolder; cursor: pointer;" class="button" value="Daftar Sekarang!">

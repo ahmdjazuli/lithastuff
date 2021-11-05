@@ -15,11 +15,11 @@ require "../../tgl_indo.php";
 ?>
 <style type="text/css" media="print"> @page { size: portrait; margin: minimum; } </style>
 <style>th{text-align:left;}</style>
-<h3 class="text-center">Laporan Laba tahun <?= $tahun ?></h3>
+<h3 class="text-center">Laporan Pendapatan Bulanan</h3>
 <h5 class="text-center">
 	<?php 
 	if($bulan){
-		echo "Periode bulan <b>".$namabulan."</b>";
+		echo "Periode bulan <b>".$namabulan." ".$tahun."</b>";
 	}?>
 </h5>
 <br>

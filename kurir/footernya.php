@@ -2,7 +2,7 @@
     <strong>Copyright &copy; 2021</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
-      Muhammad Agisna <b>Subhan</b>
+      Muhammad Zainur <b>Rahmani</b>
     </div>
   </footer>
 

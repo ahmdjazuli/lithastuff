@@ -27,7 +27,7 @@
   	<meta name="msapplication-wide310x150logo" content="../icon/mstile-310x150.png" />
   	<meta name="msapplication-square310x310logo" content="../icon/mstile-310x310.png" />
 	<style>
-		hr{ border: 4px; border-style: double; width: 100%; }
+		hr{ border: 2px; border-style: solid; width: 100%; }
 		.wew{ margin-right: 5%; }
 		.wow{ margin-left: 5%; float: left }		
 		#kiri{
@@ -41,11 +41,10 @@
 </head>
 <body>
 <div class="container-fluid"><br>
-	<img src="../icon/logo.png" style="width: 100px" class="float-left wow">
-	<p class="text-center wew"><b><br>
-		<font size="6"><span style="color:#2c3e50">ABSOLUTE ZERO</span></font>
+	<p class="text-center"><b>
+		<img src="../icon/logoreport.png" style="width: 200px">
 		<br>
-		<span style="font-weight: 400;">Alamat : Jl. Pendidikan 7 gang Mangga No. 37 RT. 005 RW. 002, Martapura</span>
+		<span style="font-weight: 400; font-size: 12px;">Alamat : Jembatan Rahmat RT01/RW01 Gang RINDU Nomor 3, <br>Kelurahan Bukat, Kecamatan Barabai Kabupaten HST</span>
 	</p>
 	<hr>
 </div>

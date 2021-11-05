@@ -9,12 +9,13 @@
 		$email 			= $_REQUEST['email'];
 		$jk 			= $_REQUEST['jk'];
 		$alamat 	    = $_REQUEST['alamat'];
+		$level 	        = $_REQUEST['level'];
 
 		$cek = mysqli_query($kon, "SELECT * FROM user WHERE username = '$username'");
 
 		if(mysqli_num_rows($cek)==0){
 
-			$hasil = mysqli_query($kon,"INSERT INTO user (username, password, nama, telp, email, jk, level,alamat) VALUES ('$username','$password','$nama','$telp','$email','$jk','pelanggan','$alamat')");
+			$hasil = mysqli_query($kon,"INSERT INTO user (username, password, nama, telp, email, jk, level,alamat,level) VALUES ('$username','$password','$nama','$telp','$email','$jk','pelanggan','$alamat','$level')");
 			if($hasil){
 				?> <script>alert('Akun Berhasil Dibuat, Silahkan Login');window.location='login.php';</script> <?php
 			}else{ 
