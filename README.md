@@ -18,7 +18,7 @@ Fitur Website :
 2. Template Admin LTE 3.0 (Navbar Top) 
 3. Multi User (Admin, Pemilik dan Pelanggan)
 4. Halaman Utama (Belanja, Troli, Checkout, Login)
-5. Data Master terdiri dari : Data Pengguna, Kurir, Ongkir, Bibit dan Biaya Pengeluaran
+5. Data Master terdiri dari : Data Pengguna, Kurir, Ongkir, Barang dan Biaya Pengeluaran
 6. Data Report terdiri dari : Data Bibit Masuk, Bibit Rusak, Bibit Rawat, Data Pembelian, Flashsale, Pengiriman, Pendapatan dan Nota
 7. Alert Standar
 8. CRUD Standar
