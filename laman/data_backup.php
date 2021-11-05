@@ -5,7 +5,7 @@
     $mysqlHostName      = "localhost";
     $DbName             = "db_lithastuff";
     $backup_name        = "db_lithastuff.sql";
-    $tables             = array("dataservice", "gaji", "inventori", "inventorimasuk", "inventorirepair", "inventorirusak", "proses","user");
+    $tables             = array("beli", "beliproduk", "flashsale", "kirim", "kurir", "ongkir", "pengaturan","pengeluaran","tanam","tanammasuk","user");
 
    //or add 5th parameter(array) of specific tables:    array("mytable1","mytable2","mytable3") for multiple tables
 
