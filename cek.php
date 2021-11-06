@@ -58,7 +58,7 @@
 				    $tanam = mysqli_query($kon, "SELECT * FROM tanam WHERE idtanam = '$idtanam'"); 
 					$pecah = mysqli_fetch_assoc($tanam);
 						if($memori['level']=='reseller'){ 
-							$bisajadi = $pecah['modal']; 
+							$bisajadi = $pecah['harga_r']; 
 						}else{ 
 							$bisajadi = $pecah['harga']; 
 						}
@@ -72,13 +72,13 @@
 							<span class="edd_checkout_cart_item_title"><?= $pecah['namatanam'] ?></span>
 						</td>
 						<td>Rp. <?php if($memori['level']=='reseller'){ 
-							echo number_format($pecah['modal'],0,',','.'); 
+							echo number_format($pecah['harga_r'],0,',','.'); 
 						}else{ 
 							echo number_format($pecah['harga'],0,',','.'); 
 						} ?></td>
 						<td><?= $jumlah ?> </td>
 						<td>Rp. <?php if($memori['level']=='reseller'){ 
-							echo number_format($pecah['modal']*$jumlah,0,',','.'); 
+							echo number_format($pecah['harga_r']*$jumlah,0,',','.'); 
 						}else{ 
 							echo number_format($pecah['harga']*$jumlah,0,',','.'); 
 						} ?></td>

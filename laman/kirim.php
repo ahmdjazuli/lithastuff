@@ -166,9 +166,8 @@
                   <thead class="table-dark">
                     <tr class="text-center">
                         <th>No</th>
-                        <th>Nama Bibit</th>
+                        <th>Nama Barang</th>
                         <th>Kategori</th>
-                        <th>Umur</th>
                         <th>Jumlah</th>
                         <th>Harga</th>
                     </tr>
@@ -181,8 +180,7 @@
                           <tr class="text-center">
                           <td><?= $no++ ?></td>
                           <td><?= $data['namatanam'] ?></td>           
-                          <td><?= $data['kategori'] ?></td>           
-                          <td><?= $data['umur'] ?></td>           
+                          <td><?= $data['kategori'] ?></td>          
                           <td><?= $data['jumlah'] ?></td>           
                           <td>Rp. <?= number_format($data['harga'],0,',','.') ?> </td>
                         <?php 

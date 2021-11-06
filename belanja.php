@@ -57,7 +57,7 @@
 					<span class="price">
 					<span class="edd_price">Rp.
 						<?php if($memori['level']=='reseller'){ 
-							echo number_format($data['modal'],0,',','.'); 
+							echo number_format($data['harga_r'],0,',','.'); 
 						}else{ 
 							echo number_format($data['harga'],0,',','.'); 
 						} ?></span>

@@ -62,13 +62,13 @@
 							<span class="edd_checkout_cart_item_title"><?= $pecah['namatanam'] ?></span>
 						</td>
 						<td>Rp. <?php if($memori['level']=='reseller'){ 
-							echo number_format($pecah['modal'],0,',','.'); 
+							echo number_format($pecah['harga_r'],0,',','.'); 
 						}else{ 
 							echo number_format($pecah['harga'],0,',','.'); 
 						} ?></td>
 						<td><input type="number" name="jumlahnya" min="1" max="<?= $pecah['stok'] ?>" value="<?= $jumlah ?>" class="form-control"></td>
 						<td>Rp. <?php if($memori['level']=='reseller'){ 
-							echo number_format($pecah['modal']*$jumlah,0,',','.'); 
+							echo number_format($pecah['harga_r']*$jumlah,0,',','.'); 
 						}else{ 
 							echo number_format($pecah['harga']*$jumlah,0,',','.'); 
 						} ?></td>

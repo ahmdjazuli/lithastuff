@@ -117,9 +117,8 @@
                   <thead class="table-dark">
                     <tr>
                         <th>No</th>
-                        <th>Nama Bibit</th>
+                        <th>Nama Barang</th>
                         <th>Kategori</th>
-                        <th>Umur</th>
                         <th>Jumlah</th>
                         <th>Harga</th>
                         <th>Sub Harga</th>
@@ -133,8 +132,7 @@
                           <tr>
                           <td><?= $no++ ?></td>
                           <td><?= $data['namatanam'] ?></td>           
-                          <td><?= $data['kategori'] ?></td>           
-                          <td><?= $data['umur'] ?></td>           
+                          <td><?= $data['kategori'] ?></td>         
                           <td><?= $data['jumlah'] ?></td>           
                           <td>Rp. <?= number_format($data['harga'],0,',','.') ?> </td>
                           <td>Rp. <?= number_format($data['subharga'],0,',','.') ?> </td>
@@ -142,10 +140,10 @@
                         <?php $totalbelanja+=$data['subharga']; } ?>
                       <tr>
                         <tr>
-                          <td class="text-center" colspan="6">Biaya Ongkir</td>
+                          <td class="text-center" colspan="5">Biaya Ongkir</td>
                           <td>Rp. <?= number_format($row['tarifnya'],0,',','.') ?></td>
                         </tr>
-                        <td class="text-center" style="font-weight: bold; background-color: #f1f1f1;" colspan="6">Total Pembayaran</td>
+                        <td class="text-center" style="font-weight: bold; background-color: #f1f1f1;" colspan="5">Total Pembayaran</td>
                         <td style="font-weight: bold; background-color: #f1f1f1;">Rp. <?= number_format($totalbelanja+$row['tarifnya'],0,',','.') ?></td>
                       </tr>
                   </tbody>

@@ -84,7 +84,7 @@
                     <tr class="text-center">
                         <th>No</th>
                         <th>Waktu</th>
-                        <th>Nama Bibit</th>
+                        <th>Nama Barang</th>
                         <th>Harga Awal</th>
                         <th>Diskon</th>
                         <th>Hasil</th>

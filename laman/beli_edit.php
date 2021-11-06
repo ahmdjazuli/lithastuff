@@ -48,7 +48,7 @@
     $user = mysqli_query($kon,"SELECT * FROM `beli` INNER JOIN user ON beli.id = user.id WHERE idbeli = '$idbeli'");
     $row = mysqli_fetch_array($user);
     if($ubah){
-      ?> <script>alert('Berhasil Diperbaharui');window.open("https://wa.me/?phone=<?= $row['telp'] ?>&text=Halo, <?= $row['nama'] ?>.%20Kami%20dari%20AbsoluteZero%20memberitahukan%20bahwa%0A%0APembeliaan%20Anda%20dengan%20_No.Transaksi%20:%20<?= $row['idbeli'] ?>_%20telah%20*DITERIMA*.");window.location='beli.php';</script> <?php
+      ?> <script>alert('Berhasil Diperbaharui');window.open("https://wa.me/?phone=<?= $row['telp'] ?>&text=Halo, <?= $row['nama'] ?>.%20Kami%20dari%20Lithastuff%20memberitahukan%20bahwa%0A%0APembeliaan%20Anda%20dengan%20_No.Transaksi%20:%20<?= $row['idbeli'] ?>_%20telah%20*DITERIMA*.");window.location='beli.php';</script> <?php
     }else{
       ?> <script>alert('Gagal Diperbaharui');window.location='beli_edit.php?idbeli=<?=$idbeli?>';</script> <?php
     }

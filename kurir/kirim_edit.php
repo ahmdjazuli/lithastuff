@@ -16,14 +16,14 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <form action="" method="POST" autocomplete="off" enctype="multipart/form-data">
+                <form action="" method="POST" enctype="multipart/form-data">
                   <div class="form-group">
                     <label>Penerima</label>
                     <input type="text" class="form-control" name="penerima" value="<?= $data['penerima'] ?>">
                   </div>
                   <div class="form-group">
                     <label>Foto</label>
-                    <input type="file" class="form-control" name="gambar">
+                    <input type="file" class="form-control" name="gambar" required>
                   </div>
                   <div class="form-group">
                     <label>Keterangan</label>
@@ -49,6 +49,7 @@
                     <i class="far fa-window-close"></i></button>
                 </div>
             	</div>
+            </form>
             </div>
         </div> <!-- /.row -->
       </section>
@@ -68,41 +69,23 @@
     $ekstensi = strtolower(end($x));
     $ukuran = $_FILES['gambar']['size'];
     $file_tmp = $_FILES['gambar']['tmp_name'];
-    $cekgambar = $_FILES['gambar']['error'];
 
     $user = mysqli_query($kon,"SELECT * FROM `beli` INNER JOIN user ON beli.id = user.id WHERE idbeli = '$data[idbeli]'");
     $row = mysqli_fetch_array($user);
 
-    if($cekgambar AND $statuskirim == 'Menunggu'){
-      $ubah = mysqli_query($kon,"UPDATE kirim SET penerima='$penerima', ket='$ket', statuskirim = '$statuskirim' WHERE idkirim = '$idkirim'");
-      if($ubah){
-        ?> <script>alert('Berhasil Diperbaharui!'); window.location = 'kirim.php';</script><?php
+    if(in_array($ekstensi, $ekstensi_diperbolehkan) === true){
+      if($ukuran < 2048000){  
+        $namabaru = rand(1000,9999).preg_replace("/[^a-zA-Z0-9]/", ".", $namafoto);   
+        move_uploaded_file($file_tmp, '../img/'.$namabaru);
+        
+        $ubah = mysqli_query($kon,"UPDATE kirim SET penerima='$penerima', ket='$ket', statuskirim = '$statuskirim', foto = '$namabaru' WHERE idkirim = '$idkirim'");
+
+          ?> <script>alert('Berhasil Diperbaharui');window.open("https://wa.me/?phone=<?= $row['telp'] ?>&text=Halo, <?= $row['nama'] ?>.%20Kami%20dari%20Lithastuff%20memberitahukan%20bahwa%0A%0APengiriman%20Anda%20dengan%20_No.Transaksi%20:%20<?= $row['idbeli'] ?>_%20telah%20*SAMPAI*.");window.location='kirim.php';</script> <?php
       }else{
-        ?> <script>alert('Gagal Diperbaharui');window.location='kirim_edit.php?idkirim=<?=$idkirim?>';</script> <?php
+        ?> <script>alert('Gagal, Ukuran File Maksimal 2MB!'); window.location = 'kirim_edit.php?idkirim=<?=$idkirim?>';</script><?php
       }
-    }else if($cekgambar AND $statuskirim == 'Selesai'){
-        ?> <script>alert('Gagal Diubah, Ketika status Selesai, Wajib upload Foto Bukti Pengiriman!'); window.location = 'kirim.php';</script><?php
     }else{
-        if(in_array($ekstensi, $ekstensi_diperbolehkan) === true){
-          if($ukuran < 2048000){  
-            $namabaru = rand(1000,9999).preg_replace("/[^a-zA-Z0-9]/", ".", $namafoto);   
-            move_uploaded_file($file_tmp, '../img/'.$namabaru);
-            
-            $ubah = mysqli_query($kon,"UPDATE kirim SET penerima='$penerima', ket='$ket', statuskirim = '$statuskirim', foto = '$namabaru' WHERE idkirim = '$idkirim'");
-
-            if($ubah){
-              ?> <script>alert('Berhasil Diperbaharui');window.open("https://wa.me/?phone=<?= $row['telp'] ?>&text=Halo, <?= $row['nama'] ?>.%20Kami%20dari%20AbsoluteZero%20memberitahukan%20bahwa%0A%0APengiriman%20Anda%20dengan%20_No.Transaksi%20:%20<?= $row['idbeli'] ?>_%20telah%20*SAMPAI*.");window.location='kirim.php';</script> <?php
-            }else{
-              ?> <script>alert('Gagal Diperbaharui');window.location='kirim_edit.php?idkirim=<?=$idkirim?>';</script> <?php
-            }
-          }else{
-            ?> <script>alert('Gagal, Ukuran File Maksimal 2MB!'); window.location = 'kirim_edit.php?idkirim=<?=$idkirim?>';</script><?php
-          }
-      }else{
-        ?> <script>alert('Gagal, File yang diupload format jpg, jpeg atau png!'); window.location = 'kirim_edit.php?idkirim=<?=$idkirim?>';</script><?php
-      }  
-    }
-
-      
-  }
- ?>
+      ?> <script>alert('Gagal, File yang diupload format jpg, jpeg atau png!'); window.location = 'kirim_edit.php?idkirim=<?=$idkirim?>';</script><?php
+    }  
+  } 
+?>
