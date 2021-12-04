@@ -1,0 +1,54 @@
+<!Doctype html>
+<html>
+<head>
+	<title>Artikel 1</title>
+</head>
+<body>
+	<form name="formGaji">
+		<table>
+			<tr>
+				<td>Hari Kerja</td>
+				<td><input type="" name="hariKerja" onFocus="startCalc();" onBlur="stopCalc();"></td>
+			</tr>
+			<tr>
+				<td>Gaji perHari</td>
+				<td>
+					<select name="gajiHarian" onFocus="startCalc();" onBlur="stopCalc();">
+						<option></option>
+						<option>150000</option>
+						<option>200000</option>
+						<option>250000</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Uang Lembur</td>
+				<td><input type="" name="lembur" onFocus="startCalc();" onBlur="stopCalc();"></td>
+			</tr>
+			<tr>
+				<td>Potongan</td>
+				<td><input type="" name="potongan" onFocus="startCalc();" onBlur="stopCalc();"></td>
+			</tr>
+			<tr>
+				<td>Total Gaji</td>
+				<td><input type="" name="totGaji"></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>
+<script>
+    function startCalc(){
+    		interval = setInterval("calc()",1);
+    }
+    function calc(){
+	    valuehariKerja = document.formGaji.hariKerja.value;
+	    valuegajiHarian = document.formGaji.gajiHarian.value;
+	    valuelembur = document.formGaji.lembur.value;
+	    valuepotongan = document.formGaji.potongan.value;
+	    document.formGaji.totGaji.value = (valuehariKerja * 1) * (valuegajiHarian * 1) + (valuelembur * 1) - (valuepotongan * 1) ;
+	}
+    function stopCalc(){
+    	clearInterval(interval);
+    }
+</script> <!-- Menghitung otomatis -->

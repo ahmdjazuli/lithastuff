@@ -1,6 +1,8 @@
 <?php require('headernya.php'); error_reporting(0); 
   $idbeli = $_GET['idbeli'];
   $beliproduk = mysqli_query($kon, "SELECT * FROM beliproduk INNER JOIN tanam ON beliproduk.idtanam = tanam.idtanam WHERE idbeli = '$idbeli' ORDER BY namatanam ASC");
+  $beli = mysqli_query($kon, "SELECT * FROM beli WHERE idbeli = '$idbeli' ");
+  $esteh = mysqli_fetch_array($beli);
 ?>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -88,6 +90,8 @@
             <div class="card">
               <div class="card-header">
                 <h2 style="display:inline;">Data Pembelian Reseller</h2>
+                <button style="float: right;margin-left: 5px" class="btn btn-success" type="button" data-toggle="tooltip" data-placement="bottom" title="Tambah"><a href="transaksi_input.php" class="text-white"><i class="fas fa-folder-plus"></i></a>
+                </button>
                 <button style="float: right" class="btn btn-primary" type="button" data-toggle="modal" data-target="#modal-sm" title="Cetak"><i class="fas fa-file-pdf"></i></button>
               </div>
               <!-- /.card-header -->
@@ -98,9 +102,10 @@
                         <th>No</th>
                         <th>Tanggal</th>
                         <th>Reseller</th>
-                        <th>Total</th>
+                        <th>Metode</th>
                         <th>Tujuan</th>
                         <th>Bukti Pembayaran</th>
+                        <th>Total</th>
                         <th>Status</th>
                         <th class="hide"></th>
                     </tr>
@@ -108,18 +113,19 @@
                   <tbody>
                     <?php 
                       $no = 1;
-                      $query = mysqli_query($kon, "SELECT * FROM `beli` INNER JOIN ongkir ON beli.idongkir = ongkir.idongkir INNER JOIN user ON beli.id = user.id WHERE level = 'reseller' ORDER BY idbeli DESC");
+                      $query = mysqli_query($kon, "SELECT * FROM `beli` LEFT JOIN ongkir ON beli.idongkir = ongkir.idongkir INNER JOIN user ON beli.id = user.id WHERE level = 'reseller' ORDER BY idbeli DESC");
                       while($data = mysqli_fetch_array($query)){
                         ?>
                           <tr class="text-center">
                           <td><?= $no++ ?></td>
                           <td><?= haribulantahun($data['tglbeli'],true)?></td>          
                           <td>
-                            <a href="beli.php?idbeli=<?= $data['idbeli'] ?>"><?= $data['nama'] ?></a>
+                            <a href="transaksi.php?idbeli=<?= $data['idbeli'] ?>"><?= $data['nama'] ?></a>
                           </td>             
-                          <td>Rp. <?= number_format($data['total'],0,',','.') ?> </td>
-                          <td><?= $data['namakota'] ?></td>           
+                          <td><?php if($data['namakota'] != ''){echo "Online"; }else{echo "COD"; }?></td>
+                          <td><?= $data['alamat'] ?></td>
                           <td><a target="_blank" href="../img/<?= $data['bukti'] ?>"><img src="../img/<?= $data['bukti'] ?>" width='60px'></a></td>        
+                          <td>Rp. <?= number_format($data['total'],0,',','.') ?> </td>
                           <td><?php 
                             if($data['status'] == 'Diterima'){
                               ?> <a href="kirim_input.php?idbeli=<?= $data[idbeli] ?>" class="text-dark"><i class='fas fa-check'></i></a>
@@ -128,7 +134,7 @@
                               echo "<i class='fas fa-times'></i>";
                             }else if($data['status'] == 'Menunggu'){
                               echo "<i class='fas fa-clock'></i>";
-                            }  ?></td>           
+                            } ?></td>           
                           <td>
                             <button class="btn bg-warning" type="button"><a href="transaksi_edit.php?idbeli=<?= $data['idbeli'] ?>" class="text-white"><i class="far fa-edit"></i></a></button>
                             <button class="btn bg-orange" onclick="yakin = confirm('Apakah Kamu yakin ingin Menghapus?'); if(yakin){ window.location = 'hapus.php?idbeli=<?= $data['idbeli'] ?>&level=reseller';
@@ -165,7 +171,7 @@
                   <thead class="table-dark">
                     <tr class="text-center">
                         <th>No</th>
-                        <th>Nama Bibit</th>
+                        <th>Nama Barang</th>
                         <th>Kategori</th>
                         <th>Jumlah</th>
                         <th>Harga</th>
@@ -186,6 +192,10 @@
                       }
                     ?>
                   </tbody>
+                  <tr class="text-center">
+                    <td colspan="4">Biaya Ongkir untuk Kota <?= $esteh['namakota'] ?></td>
+                    <td><b>Rp. <?= number_format($esteh['tarifnya'],0,',','.') ?></b></td>
+                  </tr>
                 </table>
               </div>
               <!-- /.card-body -->

@@ -40,10 +40,11 @@ require "../../tgl_indo.php";
         <th>No</th>
         <th>Tanggal</th>
 	    <th>Reseller</th>
-	    <th>Total</th>
+	    <th>Metode</th>
 	    <th>Tujuan</th>
-	    <th>Bukti Pembayaran</th>
-	    <th>Status</th>
+      <th>Bukti Pembayaran</th>
+      <th>Total</th>
+      <th>Status</th>
       </tr>
     </thead>
 <?php 
@@ -55,9 +56,10 @@ while( $data = mysqli_fetch_array($result) ) :
   	<td><?= $i++; ?></td>
   	<td><?= haribulantahun($data['tglbeli'],true)?></td>          
 	  <td><?= $data['nama'] ?></td>           
-	  <td>Rp. <?= number_format($data['total'],0,',','.') ?> </td>
-	  <td><?= $data['namakota'] ?></td>           
+	  <td><?php if($data['namakota'] != ''){echo "Online"; }else{echo "COD"; }?></td>
+	  <td><?= $data['alamat'] ?></td>
 	  <td><img src="../../img/<?= $data['bukti'] ?>" width='60px'></td>        
+	  <td>Rp. <?= number_format($data['total'],0,',','.') ?> </td>       
 	  <td><?= $data['status'] ?></td>
 </tr>
 <?php endwhile; ?>

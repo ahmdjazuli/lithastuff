@@ -1,6 +1,13 @@
 <?php 
 require "../../koneksi.php";
 require "../../tgl_indo.php";
+session_start(); 
+	date_default_timezone_set('Asia/Kuala_Lumpur');
+	$level      = $_SESSION['level'];
+  $username   = $_SESSION['username'];
+  $query      = mysqli_query($kon,"SELECT * FROM user WHERE level='$level' AND username = '$username'");
+  $memori       = mysqli_fetch_array($query);
+  $_SESSION['id'] = $memori['id'];
 	$idbeli 		= $_REQUEST['idbeli'];
 
 	$result = mysqli_query($kon, "SELECT * FROM beliproduk WHERE idbeli = '$idbeli'");
@@ -63,7 +70,8 @@ require "../../tgl_indo.php";
 <h5 class="text-center">
 </h5>
 <div style="width:50%;float:left;margin-left: 20px;">
-		<h4 style="font-weight: bold;">Info Pembeli</h4>
+		<h4 style="font-weight: bold;">Info Pembeli <?php if($memori['level']=='reseller'){
+			echo "(Reseller)"; }else{echo "(Pelanggan)";} ?></h4>
 		<label style="font-weight: normal;">Tanggal : <?= haribulantahun($data['tglbeli'],true)?></label><br>
 		<label style="font-weight: normal;">Nama : <?= $data['nama'] ?></label><br>
 		<label style="font-weight: normal;">Telp : <?= $data['telp'] ?></label><br>

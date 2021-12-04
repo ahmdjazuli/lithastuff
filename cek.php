@@ -89,9 +89,17 @@
 				</tbody>
 				<tfoot>
 				<tr>
-					<th colspan="3">Total: </th>
+					<th colspan="3">Total </th>
 					<th >
 					<span>Rp. <?= number_format($totalbelanja,0,',','.'); ?></span>
+					</th>
+				</tr>
+				<tr>
+					<th colspan="3">Total (Termasuk Ongkir)</th>
+					<th >
+					<input type="hidden" id="tarif" onFocus="startCalc();" onBlur="stopCalc();" class="form-control">
+					<input type="hidden" id="total" onFocus="startCalc();" onBlur="stopCalc();" value="<?= $totalbelanja; ?>" class="form-control">
+					<input type="number" id="totalPembayaran" class="form-control" readonly>
 					</th>
 				</tr>
 				</tfoot>
@@ -130,12 +138,14 @@
 						</div>
 						<div class="col-md-6 col-sm-12">
 							<p><label>Pilih Ongkos Kirim *</label>
-							<select name="idongkir" class="form-control" required>
+							<select name="idongkir" class="form-control" onFocus="startCalc();" onBlur="stopCalc();" onchange='ubahwoy(this.value)' required>
 							<option value="">Pilih</option>
 		                    <?php
+		                   	  $a          = "var tarif = new Array();\n;";
 		                      $ahay = mysqli_query($kon, "SELECT * FROM ongkir ORDER BY kota DESC");
 		                        while($baris = mysqli_fetch_array($ahay)) {
 		                          echo "<option value='$baris[idongkir]'>$baris[kota] - Rp. $baris[tarif]</option>";
+		                          $a .= "tarif['" . $baris['idongkir'] . "'] = {tarif:'" . addslashes($baris['tarif'])."'};\n";
 		                        } 
 		                      ?>
 		                  	</select></p>
@@ -200,10 +210,14 @@
 				foreach ($_SESSION['keranjang'] as $idtanam => $jumlah) {
 					$query = mysqli_query($kon, "SELECT * FROM tanam WHERE idtanam = '$idtanam'");
 					$ambil = mysqli_fetch_array($query);
-
 					$namanya = $ambil['namatanam'];
-					$harganya = $ambil['harga'];
-					$subharga = $ambil['harga']*$jumlah;
+					if($memori['level']=='reseller'){ 
+						$harganya = $ambil['harga_r'];
+					}else{
+						$harganya = $ambil['harga'];
+					}
+					
+					$subharga = $harganya*$jumlah;
 
 					mysqli_query($kon,"INSERT INTO beliproduk (idbeli, idtanam,jumlah, namanya, harganya, subharga) VALUES ('$idbeli','$idtanam','$jumlah','$namanya','$harganya','$subharga')");
 				}
@@ -223,3 +237,24 @@
 	}
 ?>
 <?php require('footer.php') ?>
+<script type="text/javascript">   
+  <?php   
+    echo $a;
+  ?>   
+    function ubahwoy(id){  
+        document.getElementById('tarif').value = tarif[id].tarif; 
+    };   
+
+    function startCalc(){
+    		interval = setInterval("calc()",1);
+    }
+    function calc(){
+	    var tarif = document.getElementById('tarif').value;
+        var total = document.getElementById('total').value;
+        var hasil = (parseInt(tarif)) + (parseInt(total));
+	    document.getElementById('totalPembayaran').value = hasil;
+	}
+    function stopCalc(){
+    	clearInterval(interval);
+    }
+</script> 

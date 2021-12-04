@@ -134,7 +134,7 @@
                           <td><?= $data['namatanam'] ?></td>           
                           <td><?= $data['kategori'] ?></td>         
                           <td><?= $data['jumlah'] ?></td>           
-                          <td>Rp. <?= number_format($data['harga'],0,',','.') ?> </td>
+                          <td>Rp. <?= number_format($data['harganya'],0,',','.') ?> </td>
                           <td>Rp. <?= number_format($data['subharga'],0,',','.') ?> </td>
                           </tr>
                         <?php $totalbelanja+=$data['subharga']; } ?>
