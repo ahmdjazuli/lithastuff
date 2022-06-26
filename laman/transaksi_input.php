@@ -111,6 +111,24 @@
                         ?>
                     </select>
                     </div>
+                    <div class="form-group">
+                      <label>Pilihan COD</label>
+                      <select name="idongkir" onchange='ubahCOD(this.value)' class="form-control" required>
+                        <option value="">-Pilih-</option>
+                      <?php
+                        $j = mysqli_query($kon, "SELECT * FROM ongkir WHERE kota LIKE '%COD%'");
+                        $b = "var tarif = new Array();\n;";
+                          while($ju = mysqli_fetch_array($j)) {
+                            echo "<option value='$ju[idongkir]'>$ju[kota] ($ju[ket])</option>";
+                            $b .= "tarif['" . $ju['idongkir'] . "'] = {tarif:'" . addslashes($ju['tarif'])."'};\n";
+                          } 
+                        ?>
+                    </select>
+                    </div>
+                    <div class="form-group">
+                    <label>Tarif COD</label>
+                    <input type="number" class="form-control" name="tarif" id="tarif" readonly>
+                  </div>
                 </div>
                 <div class="card-footer">
                   <button type="submit" name="simpan" class="btn btn-dark" data-toggle="tooltip" data-placement="bottom" title="Simpan"><i class="far fa-handshake"></i></button>
@@ -141,15 +159,16 @@
   if (isset($_POST['simpan'])) {
         $id          = $_REQUEST['id'];
         $tglbeli     = date('Y-m-d');
-        $layanan     = $_REQUEST['layanan'];
-        $catatan     = $_REQUEST['catatan'];
+        $tarif       = $_REQUEST['tarif'];
+        $idongkir    = $_REQUEST['idongkir'];
         $notransaksi = date('Ymds');
 
         $firdaus = mysqli_query($kon, "SELECT * FROM user WHERE id = '$id'");
         $capek = mysqli_fetch_array($firdaus);
         $alamat = $capek['alamat'];
+        $totalbelanja += $tarif;
 
-        $hasil = mysqli_query($kon,"INSERT INTO beli (id,total,tglbeli,bukti,alamat) VALUES ('$id','$totalbelanja','$tglbeli','$namabaru','$alamat')");
+        $hasil = mysqli_query($kon,"INSERT INTO beli (id,total,tglbeli,bukti,alamat,status,tarifnya,idongkir) VALUES ('$id','$totalbelanja','$tglbeli','$namabaru','$alamat','Diterima','$tarif','$idongkir')");
 
         $idbeli = $kon->insert_id;
         foreach ($_SESSION['keranjang'] as $idtanam => $jumlah) {
@@ -172,8 +191,10 @@
     }
 ?>
 <script>   
-    <?php echo $a;?>
+    <?php echo $a.$b;?>
         function ubah(id){  
         document.getElementById('harga_r').value = harga_r[id].harga_r; 
+    }function ubahCOD(id){  
+        document.getElementById('tarif').value = tarif[id].tarif; 
     };
 </script> 

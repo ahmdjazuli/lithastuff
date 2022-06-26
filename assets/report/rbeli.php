@@ -56,7 +56,7 @@ while( $data = mysqli_fetch_array($result) ) :
   	<td><?= $i++; ?></td>
   	<td><?= haribulantahun($data['tglbeli'],true)?></td>          
 	  <td><?= $data['nama'] ?></td>           
-    <td><?php if($data['namakota'] != ''){echo "Online"; }else{echo "COD"; }?></td>
+    <td><?= $data['kota'] == 'COD' ? $data['kota'].'('.$data['ket'].')' : $data['kota'] ?></td>
 	  <td><?= $data['alamat'] ?></td>
 	  <td><img src="../../img/<?= $data['bukti'] ?>" width='60px'></td>        
 	  <td>Rp. <?= number_format($data['total'],0,',','.') ?> </td>       

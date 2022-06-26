@@ -4,7 +4,7 @@ require "../../tgl_indo.php";
 	$hari = $_REQUEST['hari'];
 
 	if($hari){
-		$result = mysqli_query($kon, "SELECT level, SUM(total) as total FROM beli INNER JOIN user ON beli.id = user.id WHERE DATE(tglbeli) = '$hari' GROUP BY DATE(tglbeli)");
+		$result = mysqli_query($kon, "SELECT * FROM transaksi WHERE DATE(tgl) = '$hari' GROUP BY DATE(tgl)");
 	}
 
 	if(mysqli_num_rows($result)==0){

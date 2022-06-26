@@ -25,6 +25,10 @@
                     <label>Tarif</label>
                     <input type="text" class="form-control" name="tarif" value="<?= $data['tarif'] ?>">
                   </div>
+                  <div class="form-group">
+                    <label>Keterangan</label>
+                    <input type="text" class="form-control" name="ket" value="<?= $data['ket'] ?>">
+                  </div>
                 </div>
                 <div class="card-footer">
                   <button type="submit" name="simpan" class="btn btn-dark" data-toggle="tooltip" data-placement="bottom" title="Simpan"><i class="far fa-handshake"></i></button>
@@ -43,8 +47,9 @@
   if (isset($_POST['simpan'])) {
     $tarif    = $_REQUEST['tarif'];
     $kota    = $_REQUEST['kota'];
+    $ket    = $_REQUEST['ket'];
 
-    $ubah = mysqli_query($kon,"UPDATE ongkir SET tarif='$tarif', kota='$kota' WHERE idongkir = '$idongkir'");
+    $ubah = mysqli_query($kon,"UPDATE ongkir SET tarif='$tarif', kota='$kota', ket='$ket' WHERE idongkir = '$idongkir'");
     if($ubah){
       ?> <script>alert('Berhasil Diperbaharui');window.location='ongkir.php';</script> <?php
     }else{

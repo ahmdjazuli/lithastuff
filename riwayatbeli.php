@@ -34,7 +34,7 @@
 		</div>
 	</div>
 <div class="row">
-	<div class="col-md-offset-1 col-md-10">
+	<div class="col-md-12">
 		<div class="properties-box">
 		<div class="card">
           <div class="card-header">
@@ -45,6 +45,7 @@
                         <th>No</th>
                         <th>Tanggal</th>
                         <th>Pembeli</th>
+                        <th>Metode</th>
                         <th>Total</th>
                         <th>Tujuan</th>
                         <th>Bukti Pembayaran</th>
@@ -65,6 +66,7 @@
                           <td>
                             <a href="riwayatbeli.php?idbeli=<?= $data['idbeli'] ?>"><?= $data['nama'] ?></a>
                           </td> 
+                          <td><?= $data['kota'] == 'COD' ? $data['kota'].'('.$data['ket'].')' : $data['kota'] ?></td>
                           <td>Rp. <?= number_format($data['total'],0,',','.') ?> </td>
                           <td><?= $data['alamat'] ?></td>           
                           <td><a target="_blank" href="img/<?= $data['bukti'] ?>"><img src="img/<?= $data['bukti'] ?>" width='60px'></a></td>        

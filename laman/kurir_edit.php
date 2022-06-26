@@ -33,18 +33,12 @@
                     <label>Layanan</label>
                     <select name="layanan" class="form-control">
                         <option value="<?= $data['layanan'] ?>"><?= $data['layanan'] ?></option>
-                        <?php 
-                          if($data['layanan']=="SiCepat Ekspress"){
-                            ?> <option value="JNE">JNE</option> <?php
-                            ?> <option value="J&T Express">J&T Express</option> <?php
-                          }else if($data['layanan']=="JNE"){
-                            ?> <option value="J&T Express">J&T Express</option> <?php
-                            ?> <option value="SiCepat Ekspress">SiCepat Ekspress</option> <?php
-                          }else if($data['layanan']=="J&T Express"){
-                            ?> <option value="JNE">JNE</option> <?php
-                            ?> <option value="SiCepat Ekspress">SiCepat Ekspress</option> <?php
-                          }
-                        ?>
+                        <option value="JNE">JNE</option>
+                        <option value="J&T Express">J&T Express</option>
+                        <option value="SiCepat Ekspress">SiCepat Ekspress</option>
+                        <option value="AnterAja">AnterAja</option>
+                        <option value="Ninja Express">Ninja Express</option>
+                        <option value="TIKI">TIKI</option>
                       </select>
                   </div>
                   <div class="form-group">

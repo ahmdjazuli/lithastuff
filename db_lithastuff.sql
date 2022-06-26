@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2021 at 12:11 AM
+-- Generation Time: Jun 26, 2022 at 06:51 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -51,9 +51,10 @@ INSERT INTO `beli` (`idbeli`, `id`, `idongkir`, `tglbeli`, `total`, `bukti`, `st
 (40, 6, 8, '2021-11-06', 227000, '1727IMG.20210815.WA0021.jpg', 'Diterima', 'Martapura', 17000, 'Jl. Trikora Rt.32 Rw.5 Kode Pos 70721 Guntung Manggis'),
 (41, 2, 8, '2021-11-06', 157000, '5937image22a.png', 'Diterima', 'Martapura', 17000, 'komplek pangeran antasari no. 33'),
 (42, 4, 6, '2021-11-06', 195000, '1279Screenshot.2020.0821.193603.9b553e87d5bc57b8c2fe37f8ae5bc043.png', 'Diterima', 'Marabahan', 25000, 'Jl. Bunga Melati kota Banjarbaru'),
-(44, 2, 0, '2021-12-04', 73000, '', '', '', 0, 'komplek pangeran antasari no. 33'),
+(44, 2, 12, '2021-12-04', 73000, '', 'Diterima', '', 0, 'komplek pangeran antasari no. 33'),
 (46, 7, 3, '2021-12-04', 119000, '8052image22a.png', 'Diterima', 'Barabai', 5000, 'MTP'),
-(47, 7, 0, '2021-12-04', 8000, '', '', '', 0, 'MTP');
+(49, 7, 13, '2022-06-26', 48000, '', 'Diterima', '', 8000, 'MTP'),
+(51, 3, 13, '2022-06-26', 81000, '', 'Diterima', '', 8000, 'Gang Hijrah Raya, Muhibbin 4 Sekumpul');
 
 -- --------------------------------------------------------
 
@@ -84,7 +85,8 @@ INSERT INTO `beliproduk` (`idbeliproduk`, `idbeli`, `idtanam`, `jumlah`, `namany
 (36, 42, 10, 2, 'Kemeja Flanel Crop', 85000, 170000),
 (38, 44, 5, 1, 'Kemeja Saku Rempel 1029', 73000, 73000),
 (40, 46, 9, 2, 'Highwaist Loose Kulot 1024', 57000, 114000),
-(41, 47, 12, 1, 'Chemira Bergo Sport', 8000, 8000);
+(44, 49, 8, 1, 'Crincle Blouse', 40000, 40000),
+(46, 51, 5, 1, 'Kemeja Saku Rempel 1029', 73000, 73000);
 
 --
 -- Triggers `beliproduk`
@@ -118,7 +120,8 @@ CREATE TABLE `flashsale` (
 --
 
 INSERT INTO `flashsale` (`idflash`, `idtanam`, `hargaawal`, `waktu`, `diskon`, `hasil`) VALUES
-(4, 5, 73000, '2021-12-03 11:08:00', 10, 65700);
+(4, 5, 73000, '2021-12-03 11:08:00', 10, 65700),
+(5, 5, 73000, '2022-06-11 23:37:00', 49, 37230);
 
 --
 -- Triggers `flashsale`
@@ -191,7 +194,10 @@ CREATE TABLE `kurir` (
 
 INSERT INTO `kurir` (`idkurir`, `username`, `password`, `namakurir`, `kontakkurir`, `alamatkurir`, `jkkurir`, `layanan`) VALUES
 (2, 'syabani', 'syabani', 'Akhmad Syabani', '051178659932', 'Banjarmasin', '0', 'JNE'),
-(3, 'ridwan', 'ridwan', 'Ridwan', '085369696664', 'Barabai', '0', 'J&T Express');
+(3, 'ridwan', 'ridwan', 'Ridwan', '085369696664', 'Barabai', '0', 'J&T Express'),
+(4, 'farhan', 'farhan', 'Farhan Hermawan', '051175658212', 'Sungai Rangas, Martapura', '0', 'SiCepat Ekspress'),
+(5, 'haqi', 'haqi', 'Navis Haqi', '051179641945', 'jl. panglima batur timur rt. 02 rw.01 ruko no. 6', '0', 'TIKI'),
+(6, 'aprian', 'aprian', 'Reza Aprian', '089754328811', 'jl. raya pengasinan no. 41 kel. jatimulya', '0', 'AnterAja');
 
 -- --------------------------------------------------------
 
@@ -202,24 +208,27 @@ INSERT INTO `kurir` (`idkurir`, `username`, `password`, `namakurir`, `kontakkuri
 CREATE TABLE `ongkir` (
   `idongkir` int(2) NOT NULL,
   `kota` varchar(80) NOT NULL,
-  `tarif` int(11) NOT NULL
+  `tarif` int(11) NOT NULL,
+  `ket` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `ongkir`
 --
 
-INSERT INTO `ongkir` (`idongkir`, `kota`, `tarif`) VALUES
-(2, 'Banjarbaru', 15000),
-(3, 'Barabai', 5000),
-(4, 'Kotabaru', 17000),
-(5, 'Banjarmasin', 20000),
-(6, 'Marabahan', 25000),
-(7, 'Kandangan', 20000),
-(8, 'Martapura', 17000),
-(9, 'Pelaihari', 18000),
-(10, 'Batakan', 25000),
-(11, 'Landasan Ulin', 10000);
+INSERT INTO `ongkir` (`idongkir`, `kota`, `tarif`, `ket`) VALUES
+(2, 'Banjarbaru', 15000, ''),
+(3, 'Barabai', 5000, ''),
+(4, 'Kotabaru', 17000, ''),
+(5, 'Banjarmasin', 20000, ''),
+(6, 'Marabahan', 25000, ''),
+(7, 'Kandangan', 20000, ''),
+(8, 'Martapura', 17000, ''),
+(9, 'Pelaihari', 18000, ''),
+(10, 'Batakan', 25000, ''),
+(11, 'Landasan Ulin', 10000, ''),
+(12, 'COD', 0, 'Jarak 1-5 km'),
+(13, 'COD', 8000, 'Jarak 6-10 km');
 
 -- --------------------------------------------------------
 
@@ -256,6 +265,8 @@ CREATE TABLE `pengeluaran` (
   `idpengeluaran` int(5) NOT NULL,
   `tgl` date NOT NULL,
   `ket` text NOT NULL,
+  `jumlah` int(5) NOT NULL,
+  `harga` float NOT NULL,
   `total` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -263,9 +274,10 @@ CREATE TABLE `pengeluaran` (
 -- Dumping data for table `pengeluaran`
 --
 
-INSERT INTO `pengeluaran` (`idpengeluaran`, `tgl`, `ket`, `total`) VALUES
-(1, '2021-11-29', 'Kantong Plastik Pembungkus', 13000),
-(3, '2021-11-30', 'Stiker Brand', 15000);
+INSERT INTO `pengeluaran` (`idpengeluaran`, `tgl`, `ket`, `jumlah`, `harga`, `total`) VALUES
+(1, '2021-11-29', 'Kantong Plastik Pembungkus variasi 17 x 33 cm', 50, 140, 7000),
+(3, '2021-11-30', 'Stiker Brand', 20, 750, 15000),
+(4, '2021-11-10', 'Kantong Plastik Pembungkus variasi 24 x 40 cm', 50, 250, 12500);
 
 -- --------------------------------------------------------
 
@@ -293,13 +305,13 @@ CREATE TABLE `tanam` (
 
 INSERT INTO `tanam` (`idtanam`, `namatanam`, `kategori`, `modal`, `harga`, `deskripsi`, `gambar`, `stok`, `harga_r`, `terjual`, `cekflash`) VALUES
 (4, 'Kemeja Crincle Airflow', 'Kemeja', 60000, 75000, 'Lingkar Dada : 110cm dan\r\nBahan : Crincle Airflow', '2538Screenshot.20211101.060015.Instagram..2..jpg', 0, 70000, 0, 0),
-(5, 'Kemeja Saku Rempel 1029', 'Kemeja', 55000, 73000, 'Bahan : Rayon Premium dan Lingkar Dada 120cm', '3438Screenshot.20211101.060042.Instagram..2..jpg', 3, 65000, 1, 0),
-(6, 'Kemeja Flanel Crop Premium', 'Kemeja', 60000, 85000, 'Bahan : Flanel Tebal dan Lembut, Lingkar Dada 120cm, Panjang 70cm.', '9085Screenshot.20211101.060058.Instagram..2..jpg', 2, 70000, 1, 0),
+(5, 'Kemeja Saku Rempel 1029', 'Kemeja', 55000, 73000, 'Bahan : Rayon Premium dan Lingkar Dada 120cm', '3438Screenshot.20211101.060042.Instagram..2..jpg', 2, 65000, 2, 0),
+(6, 'Kemeja Flanel Crop Premium', 'Kemeja', 60000, 85000, 'Bahan : Flanel Tebal dan Lembut, Lingkar Dada 120cm, Panjang 70cm.', '9085Screenshot.20211101.060058.Instagram..2..jpg', 1, 70000, 2, 0),
 (7, 'Highwaist Loose Kulot', 'Sweater', 50000, 63000, 'Bahan : Linen, Ukuran XL, Lingkar Paha 73cm, Lingkar Pinggang 74-100cm dan Panjang 95cm. Ada kancing, saku di kanan kiri, ban di bagian depan, dan karet di bagian belakang.', '3621Screenshot.20211101.060438.Instagram..3..jpg', 2, 55000, 1, 0),
-(8, 'Crincle Blouse', 'Kemeja', 35000, 50000, 'Bahan Katun Rayon Diamond, Lingkar Dada 122cm, Panjang Baju 56cm dan Panjang Lengan 54cm.', '7740Screenshot.20211101.060533.Instagram..2..jpg', 10, 40000, 0, 0),
-(9, 'Highwaist Loose Kulot 1024', 'Kemeja', 52000, 63000, 'Bahan : Linen, Ukuran S-M-L, Lingkar Paha 73cm, Lingkar Pinggang 74-100cm dan Panjang 95cm.', '6256Screenshot.20211101.060455.Instagram..3..jpg', 0, 57000, 5, 0),
+(8, 'Crincle Blouse', 'Kemeja', 35000, 50000, 'Bahan Katun Rayon Diamond, Lingkar Dada 122cm, Panjang Baju 56cm dan Panjang Lengan 54cm.', '7740Screenshot.20211101.060533.Instagram..2..jpg', 9, 40000, 1, 0),
+(9, 'Highwaist Loose Kulot 1024', 'Kemeja', 52000, 63000, 'Bahan : Linen, Ukuran S-M-L, Lingkar Paha 73cm, Lingkar Pinggang 74-100cm dan Panjang 95cm.', '6256Screenshot.20211101.060455.Instagram..3..jpg', -1, 57000, 6, 0),
 (10, 'Kemeja Flanel Crop', 'Kemeja', 70000, 85000, 'Bahan Flanel Tebal, Lingkar Dada 112cm dan Panjang 45cm.', '9221Screenshot.20211101.060304.Instagram..2..jpg', 3, 78000, 4, 0),
-(12, 'Chemira Bergo Sport', 'Jilbab', 6000, 13000, 'Bahan Jersey.', '8746Screenshot.20211101.060737.Instagram..2..jpg', 1, 8000, 4, 0),
+(12, 'Chemira Bergo Sport', 'Jilbab', 6000, 13000, 'Bahan Jersey.', '8746Screenshot.20211101.060737.Instagram..2..jpg', 0, 8000, 5, 0),
 (13, 'Kemeja Flanel Korea', 'Kemeja', 55000, 70000, 'Bahan : Flanel Lingkar Dada 98cm, Panjang Baju 53cm dan Panjang Lengan 54cm ', '1030Screenshot.20211101.060754.Instagram..2..jpg', 2, 60000, 6, 0);
 
 -- --------------------------------------------------------
@@ -474,19 +486,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `beli`
 --
 ALTER TABLE `beli`
-  MODIFY `idbeli` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `idbeli` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `beliproduk`
 --
 ALTER TABLE `beliproduk`
-  MODIFY `idbeliproduk` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `idbeliproduk` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `flashsale`
 --
 ALTER TABLE `flashsale`
-  MODIFY `idflash` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idflash` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `kirim`
@@ -498,19 +510,19 @@ ALTER TABLE `kirim`
 -- AUTO_INCREMENT for table `kurir`
 --
 ALTER TABLE `kurir`
-  MODIFY `idkurir` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idkurir` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `ongkir`
 --
 ALTER TABLE `ongkir`
-  MODIFY `idongkir` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `idongkir` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `pengeluaran`
 --
 ALTER TABLE `pengeluaran`
-  MODIFY `idpengeluaran` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idpengeluaran` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tanam`
@@ -535,10 +547,36 @@ ALTER TABLE `user`
 --
 
 --
+-- Constraints for table `beli`
+--
+ALTER TABLE `beli`
+  ADD CONSTRAINT `beli_ibfk_1` FOREIGN KEY (`id`) REFERENCES `user` (`id`);
+
+--
 -- Constraints for table `beliproduk`
 --
 ALTER TABLE `beliproduk`
-  ADD CONSTRAINT `beliproduk_ibfk_1` FOREIGN KEY (`idbeli`) REFERENCES `beli` (`idbeli`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `beliproduk_ibfk_1` FOREIGN KEY (`idbeli`) REFERENCES `beli` (`idbeli`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `beliproduk_ibfk_2` FOREIGN KEY (`idtanam`) REFERENCES `tanam` (`idtanam`);
+
+--
+-- Constraints for table `flashsale`
+--
+ALTER TABLE `flashsale`
+  ADD CONSTRAINT `flashsale_ibfk_1` FOREIGN KEY (`idtanam`) REFERENCES `tanam` (`idtanam`);
+
+--
+-- Constraints for table `kirim`
+--
+ALTER TABLE `kirim`
+  ADD CONSTRAINT `kirim_ibfk_1` FOREIGN KEY (`idbeli`) REFERENCES `beli` (`idbeli`),
+  ADD CONSTRAINT `kirim_ibfk_2` FOREIGN KEY (`idkurir`) REFERENCES `kurir` (`idkurir`);
+
+--
+-- Constraints for table `tanammasuk`
+--
+ALTER TABLE `tanammasuk`
+  ADD CONSTRAINT `tanammasuk_ibfk_1` FOREIGN KEY (`idtanam`) REFERENCES `tanam` (`idtanam`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

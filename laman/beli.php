@@ -1,8 +1,9 @@
 <?php require('headernya.php'); error_reporting(0); 
   $idbeli = $_GET['idbeli'];
+  $idongkir = $_GET['idongkir'];
   $beliproduk = mysqli_query($kon, "SELECT * FROM beliproduk INNER JOIN tanam ON beliproduk.idtanam = tanam.idtanam WHERE idbeli = '$idbeli' ORDER BY namatanam ASC");
-  $beli = mysqli_query($kon, "SELECT * FROM beli WHERE idbeli = '$idbeli' ");
-  $esteh = mysqli_fetch_array($beli);
+  $ongkir = mysqli_query($kon, "SELECT * FROM ongkir WHERE idongkir = '$idongkir' ");
+  $esteh = mysqli_fetch_array($ongkir);
 ?>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -120,9 +121,9 @@
                           <td><?= $no++ ?></td>
                           <td><?= haribulantahun($data['tglbeli'],true)?></td>          
                           <td>
-                            <a href="beli.php?idbeli=<?= $data['idbeli'] ?>"><?= $data['nama'] ?></a>
+                            <a href="beli.php?idbeli=<?= $data['idbeli'] ?>&idongkir=<?= $data['idongkir'] ?>"><?= $data['nama'] ?></a>
                           </td>             
-                          <td><?php if($data['namakota'] != ''){echo "Online"; }else{echo "COD"; }?></td>
+                          <td><?= $data['kota'] == 'COD' ? $data['kota'].'('.$data['ket'].')' : $data['kota'] ?></td>
                           <td><?= $data['alamat'] ?></td>
                           <td><a target="_blank" href="../img/<?= $data['bukti'] ?>"><img src="../img/<?= $data['bukti'] ?>" width='60px'></a></td>        
                           <td>Rp. <?= number_format($data['total'],0,',','.') ?> </td>
@@ -193,8 +194,8 @@
                     ?>
                   </tbody>
                   <tr class="text-center">
-                    <td colspan="4">Biaya Ongkir untuk Kota <?= $esteh['namakota'] ?></td>
-                    <td><b>Rp. <?= number_format($esteh['tarifnya'],0,',','.') ?></b></td>
+                    <td colspan="4">Biaya Ongkir <?= $esteh['kota'] == 'COD' ? $esteh['kota'].'('.$esteh['ket'].')' : $esteh['kota'] ?></td>
+                    <td><b>Rp. <?= number_format($esteh['tarif'],0,',','.') ?></b></td>
                   </tr>
                 </table>
               </div>

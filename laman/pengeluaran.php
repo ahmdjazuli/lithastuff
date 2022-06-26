@@ -20,7 +20,9 @@
                         <th>No</th>
                         <th>Tanggal</th>
                         <th>Keterangan</th>
-                        <th>Biaya (Rp.)</th>
+                        <th>Harga (Rp.)</th>
+                        <th>Jumlah</th>
+                        <th>Total (Rp.)</th>
                         <th class="hide"></th>
                     </tr>
                   </thead>
@@ -34,6 +36,8 @@
                           <td><?= $no++ ?></td>
                           <td><?= haribulantahun($data['tgl'],true)?></td>         
                           <td><?= $data['ket'] ?></td>           
+                          <td><?= number_format($data['harga'],0,',','.') ?> </td>          
+                          <td><?= $data['jumlah'] ?></td>           
                           <td><?= number_format($data['total'],0,',','.') ?> </td>          
                           <td>
                             <button class="btn bg-warning" type="button"><a href="pengeluaran_edit.php?idpengeluaran=<?= $data['idpengeluaran'] ?>" class="text-white"><i class="far fa-edit"></i></a></button>

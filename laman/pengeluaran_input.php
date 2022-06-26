@@ -22,8 +22,12 @@
                     <input type="text" class="form-control" name="ket">
                   </div>
                   <div class="form-group">
-                    <label>Biaya</label>
-                    <input type="number" class="form-control" name="total">
+                    <label>Jumlah</label>
+                    <input type="number" class="form-control" name="jumlah">
+                  </div>
+                  <div class="form-group">
+                    <label>Harga (Satuan)</label>
+                    <input type="number" class="form-control" name="harga">
                   </div>
                 </div>
                 <div class="card-footer">
@@ -42,10 +46,12 @@
 <?php 
   if (isset($_POST['simpan'])) {
     $ket    = $_REQUEST['ket'];
-    $tgl = $_REQUEST['tgl'];
-    $total = $_REQUEST['total'];
+    $tgl    = $_REQUEST['tgl'];
+    $harga  = $_REQUEST['harga'];
+    $jumlah = $_REQUEST['jumlah'];
+    $total  = $harga * $jumlah;
 
-    $tambah = mysqli_query($kon,"INSERT INTO pengeluaran(ket, tgl, total) VALUES ('$ket','$tgl','$total')");
+    $tambah = mysqli_query($kon,"INSERT INTO pengeluaran(ket, tgl, total, harga, jumlah) VALUES ('$ket','$tgl','$total','$harga','$total')");
     if($tambah){
       ?> <script>alert('Berhasil Disimpan');window.location='pengeluaran.php';</script> <?php
     }else{

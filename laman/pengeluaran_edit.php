@@ -26,8 +26,12 @@
                     <input type="text" value="<?= $data['ket'] ?>" class="form-control" name="ket">
                   </div>
                   <div class="form-group">
-                    <label>Biaya</label>
-                    <input type="number" class="form-control" value="<?= $data['total'] ?>" name="total">
+                    <label>Jumlah</label>
+                    <input type="number" class="form-control" name="jumlah" value="<?= $data['jumlah'] ?>">
+                  </div>
+                  <div class="form-group">
+                    <label>Harga (Satuan)</label>
+                    <input type="number" class="form-control" name="harga" value="<?= $data['harga'] ?>">
                   </div>
                 </div>
                 <div class="card-footer">
@@ -47,9 +51,11 @@
   if (isset($_POST['simpan'])) {
     $ket    = $_REQUEST['ket'];
     $tgl = $_REQUEST['tgl'];
-    $total = $_REQUEST['total'];
+    $harga  = $_REQUEST['harga'];
+    $jumlah = $_REQUEST['jumlah'];
+    $total  = $harga * $jumlah;
 
-    $ubah = mysqli_query($kon,"UPDATE pengeluaran SET ket='$ket', tgl='$tgl', total='$total' WHERE idpengeluaran = '$idpengeluaran'");
+    $ubah = mysqli_query($kon,"UPDATE pengeluaran SET ket='$ket', tgl='$tgl', jumlah='$jumlah', harga='$harga', total='$total' WHERE idpengeluaran = '$idpengeluaran'");
     if($ubah){
       ?> <script>alert('Berhasil Diperbaharui');window.location='pengeluaran.php';</script> <?php
     }else{

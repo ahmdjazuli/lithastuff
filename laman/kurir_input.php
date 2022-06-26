@@ -28,6 +28,9 @@
                       <option value="JNE">JNE</option>
                       <option value="J&T Express">J&T Express</option>
                       <option value="SiCepat Ekspress">SiCepat Ekspress</option>
+                      <option value="AnterAja">AnterAja</option>
+                      <option value="Ninja Express">Ninja Express</option>
+                      <option value="TIKI">TIKI</option>
                     </select>
                   </div>
                   <div class="form-group">

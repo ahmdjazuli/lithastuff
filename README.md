@@ -13,6 +13,11 @@ Bahasa Pemograman :
 2. Javascript
 3. CSS
 
+PEMBAHARUAN :
+1. Data Kurir udah ditambahkan 5, dan Layanan juga sudah ditambahkan (Anteraja, Ninja Express dan TIKI).
+2. Harga Satuan dan total data pngeluarkan d tambahkan.
+3. Data Ongkir -> ditambahkan kolom "Keterangan" utk mengisi "Jarak COD".
+
 Fitur Website :
 1. Template Scorilo (Coklat Putih)
 2. Template Admin LTE 3.0 (Navbar Top) 

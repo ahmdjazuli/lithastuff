@@ -20,6 +20,7 @@
                         <th>No</th>
                         <th>Nama Kota</th>
                         <th>Tarif</th>
+                        <th>Keterangan</th>
                         <th class="hide"></th>
                     </tr>
                   </thead>
@@ -33,6 +34,7 @@
                           <td><?= $no++ ?></td>
                           <td><?= $data['kota'] ?></td>           
                           <td>Rp. <?= number_format($data['tarif'],0,',','.') ?> </td>
+                          <td><?= $data['ket'] ? $data['ket'] : '-'  ?></td>           
                           <td>
                             <button class="btn bg-warning" type="button"><a href="ongkir_edit.php?idongkir=<?= $data['idongkir'] ?>" class="text-white"><i class="far fa-edit"></i></a></button>
                             <button class="btn bg-orange" onclick="yakin = confirm('Apakah Kamu yakin ingin Menghapus?'); if(yakin){ window.location = 'hapus.php?idongkir=<?= $data['idongkir'] ?>';
