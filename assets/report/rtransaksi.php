@@ -3,12 +3,21 @@ require "../../koneksi.php";
 require "../../tgl_indo.php";
 	$bulan 		= $_REQUEST['bulan'];
 	$tahun 		= $_REQUEST['tahun'];
-	$status = $_REQUEST['status'];
+	$status   = $_REQUEST['status'];
+	$metode   = $_REQUEST['metode'];
 
-	if($bulan AND $tahun AND empty($status) ){
+	if($bulan AND $tahun AND empty($status) AND empty($metode)){
 		$result = mysqli_query($kon, "SELECT * FROM `beli` INNER JOIN ongkir ON beli.idongkir = ongkir.idongkir INNER JOIN user ON beli.id = user.id WHERE MONTH(tglbeli) = '$bulan' AND YEAR(tglbeli) = '$tahun' AND level = 'reseller' ORDER BY tglbeli ASC");
-	}else if($bulan AND $tahun AND $status){
+	}else if($bulan AND $tahun AND $status AND empty($metode)){
 		$result = mysqli_query($kon, "SELECT * FROM `beli` INNER JOIN ongkir ON beli.idongkir = ongkir.idongkir INNER JOIN user ON beli.id = user.id WHERE MONTH(tglbeli) = '$bulan' AND YEAR(tglbeli) = '$tahun' AND status = '$status' AND level = 'reseller' ORDER BY tglbeli ASC");
+	}else if($bulan AND $tahun AND empty($status) AND $metode == 1){
+		$result = mysqli_query($kon, "SELECT * FROM `beli` INNER JOIN ongkir ON beli.idongkir = ongkir.idongkir INNER JOIN user ON beli.id = user.id WHERE MONTH(tglbeli) = '$bulan' AND YEAR(tglbeli) = '$tahun' AND level = 'reseller' AND namakota = '' ORDER BY tglbeli ASC");
+	}else if($bulan AND $tahun AND empty($status) AND $metode == 2){
+		$result = mysqli_query($kon, "SELECT * FROM `beli` INNER JOIN ongkir ON beli.idongkir = ongkir.idongkir INNER JOIN user ON beli.id = user.id WHERE MONTH(tglbeli) = '$bulan' AND YEAR(tglbeli) = '$tahun' AND level = 'reseller' AND namakota != '' ORDER BY tglbeli ASC");
+	}else if($bulan AND $tahun AND $status AND $metode == 1){
+		$result = mysqli_query($kon, "SELECT * FROM `beli` INNER JOIN ongkir ON beli.idongkir = ongkir.idongkir INNER JOIN user ON beli.id = user.id WHERE MONTH(tglbeli) = '$bulan' AND YEAR(tglbeli) = '$tahun' AND status = '$status' AND level = 'reseller' AND namakota = '' ORDER BY tglbeli ASC");
+	}else if($bulan AND $tahun AND $status AND $metode == 2){
+		$result = mysqli_query($kon, "SELECT * FROM `beli` INNER JOIN ongkir ON beli.idongkir = ongkir.idongkir INNER JOIN user ON beli.id = user.id WHERE MONTH(tglbeli) = '$bulan' AND YEAR(tglbeli) = '$tahun' AND status = '$status' AND level = 'reseller' AND namakota != '' ORDER BY tglbeli ASC");
 	}else{
 		?> <script>alert('Data Tidak Ditemukan');window.location='../../laman/transaksi.php';</script> <?php
 	}
@@ -24,10 +33,18 @@ require "../../tgl_indo.php";
 <h3 style="text-align: center;">Laporan Data Pembelian Reseller</h3>
 <h5 class="text-center">
 	<?php 
-	if($bulan AND $tahun AND empty($status)){
-		echo "Periode bulan ".$namabulan.' '.$tahun;
-	}else if($bulan AND $tahun AND $status){
-		echo "Periode bulan ".$namabulan.' '.$tahun.' untuk status yang di'.$status;
+	if($bulan AND $tahun AND empty($status) AND empty($metode)){
+		echo "Periode bulan ".$namabulan.' '.$tahun. ', status : SEMUA dan metode : SEMUA';
+	}else if($bulan AND $tahun AND $status AND empty($metode)){
+		echo "Periode bulan ".$namabulan.' '.$tahun.' status yang di'.$status. ' dan metode : SEMUA';
+	}else if($bulan AND $tahun AND empty($status) AND $metode == 1){
+		echo "Periode bulan ".$namabulan.' '.$tahun.' status SEMUA dan metode : Offline';
+	}else if($bulan AND $tahun AND empty($status) AND $metode == 2){
+		echo "Periode bulan ".$namabulan.' '.$tahun.' status SEMUA dan metode : Online';
+	}else if($bulan AND $tahun AND $status AND $metode == 1){
+		echo "Periode bulan ".$namabulan.' '.$tahun.' status yang di'.$status. ' dan metode : Offline';
+	}else if($bulan AND $tahun AND $status AND $metode == 2){
+		echo "Periode bulan ".$namabulan.' '.$tahun.' status yang di'.$status. ' dan metode : Online';
 	}?>
 </h5>
 <br>
@@ -37,8 +54,8 @@ require "../../tgl_indo.php";
   <table class="table table-sm" border="1px" style="font-weight: 400;">
     <thead class="text-center">
       <tr>
-        <th>No</th>
-        <th>Tanggal</th>
+      <th>No</th>
+      <th>Tanggal</th>
 	    <th>Reseller</th>
 	    <th>Metode</th>
 	    <th>Tujuan</th>

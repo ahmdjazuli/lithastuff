@@ -59,7 +59,7 @@
                 <?php } ?>
                 </select>
                 </div>
-                <div class="input-group input-group-mb">
+                <div class="input-group input-group-mb" style="margin-bottom: 10px">
                     <div class="input-group-prepend" style="width: 50%">
                         <span class="input-group-text" style="width: 100%">Konfirmasi</span>
                     </div>
@@ -68,6 +68,16 @@
                     <option value="Diterima">Diterima</option> 
                     <option value="Ditolak">Ditolak</option> 
                     <option value="Menunggu">Menunggu</option> 
+                </select>
+                </div>
+                <div class="input-group input-group-mb">
+                    <div class="input-group-prepend" style="width: 50%">
+                        <span class="input-group-text" style="width: 100%">Metode</span>
+                    </div>
+                <select name="metode" class="form-control">
+                    <option value="">Semua</option>
+                    <option value="1">Offline</option> 
+                    <option value="2">Online</option> 
                 </select>
                 </div>
             </div>
