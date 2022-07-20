@@ -246,11 +246,6 @@
 					<input type="email" class="input" name="email">
 				</div>
 				<div class="group">
-					<label class="label">Daftar sebagai</label>
-					<input type="radio" name="level" value="pelanggan" checked> Pelanggan
-					<input type="radio" name="level" value="reseller"> Reseller<br>
-				</div>
-				<div class="group">
 					<input type="submit" name="daftar" style="color:#342e26;font-weight:bolder; cursor: pointer;" class="button" value="Daftar Sekarang!">
 				</div>
 				<div class="hr"></div>
