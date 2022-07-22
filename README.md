@@ -13,6 +13,12 @@ Bahasa Pemograman :
 2. Javascript
 3. CSS
 
+PEMBAHARUAN 2 :
+1. Fix Deskripsi di Halaman Awal Website.
+2. Fix TTD disetiap report ditambahkan Nama Pemilik Tokonya langsung.
+3. Fix Semua Link di Menu Dashboard Admin 
+4. Fix Ubah Data Pengguna -> ditambahkan si Level.
+
 PEMBAHARUAN :
 1. Data Kurir udah ditambahkan 5, dan Layanan juga sudah ditambahkan (Anteraja, Ninja Express dan TIKI).
 2. Harga Satuan dan total data pngeluarkan d tambahkan.

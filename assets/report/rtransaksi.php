@@ -81,12 +81,11 @@ while( $data = mysqli_fetch_array($result) ) :
 </tr>
 <?php endwhile; ?>
   </table>
-<!-- akhir table -->
 </div>
 <div id="kiri"></div>
 <div id="kanan">
-	Mengetahui,<br><br><br>
-	Pemilik Toko
+	Mengetahui, Pemilik Toko<br><br><br>
+	Litha Octavianti<br>
 </div>
 <script>
 	window.print();

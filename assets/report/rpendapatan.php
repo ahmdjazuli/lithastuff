@@ -4,7 +4,7 @@ require "../../tgl_indo.php";
 	$hari = $_REQUEST['hari'];
 
 	if($hari){
-		$result = mysqli_query($kon, "SELECT * FROM transaksi WHERE DATE(tgl) = '$hari' GROUP BY DATE(tgl)");
+		$result = mysqli_query($kon, "SELECT * FROM beli WHERE DATE(tglbeli) = '$hari' GROUP BY DATE(tglbeli)");
 	}
 
 	if(mysqli_num_rows($result)==0){
@@ -49,8 +49,8 @@ while( $data = mysqli_fetch_array($result) ) :
 </div>
 <div id="kiri"></div>
 <div id="kanan">
-	Mengetahui,<br><br><br>
-	Pemilik Toko
+	Mengetahui, Pemilik Toko<br><br><br>
+	Litha Octavianti<br>
 </div>
 <script>
 	window.print();

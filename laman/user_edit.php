@@ -51,6 +51,14 @@
                     <input type="radio" name="jk" value="0" checked> Laki-Laki &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <input type="radio" name="jk" value="1"> Perempuan
                   </div>
+                  <div class="form-group">
+                    <label>Level</label>
+                    <select name="level" class="form-control">
+                      <option value="<?= $data['level'] ?>"><?= $data['level'] ?></option>
+                      <option value="reseller">reseller</option>
+                      <option value="pelanggan">pelanggan</option>
+                    </select>
+                  </div>
                 </div>
                 <div class="card-footer">
                   <button type="submit" name="simpan" class="btn btn-dark" data-toggle="tooltip" data-placement="bottom" title="Simpan"><i class="far fa-handshake"></i></button>
@@ -75,8 +83,9 @@
     $email    = $_REQUEST['email'];
     $nama = $_REQUEST['nama'];
     $jk = $_REQUEST['jk'];
+    $level = $_REQUEST['level'];
 
-    $ubah = mysqli_query($kon,"UPDATE user SET username='$username', alamat='$alamat', telp='$telp', email='$email', nama='$nama', jk = '$jk' WHERE id = '$id'");
+    $ubah = mysqli_query($kon,"UPDATE user SET username='$username', alamat='$alamat', telp='$telp', email='$email', nama='$nama', jk = '$jk', level = '$level' WHERE id = '$id'");
     if($ubah){
       ?> <script>alert('Berhasil Diperbaharui');window.location='user.php';</script> <?php
     }else{

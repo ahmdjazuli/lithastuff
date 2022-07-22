@@ -101,7 +101,7 @@
           </div>
 
           <div class="col-md-3 col-sm-6 col-12">
-            <a href="user.php">
+            <a href="transaksi.php">
             <div class="info-box <?= $se['warna_report'] ?>">
               <span class="info-box-icon" style="font-size: 50px">
                 <i class="fas fa-store-alt"></i></span>
@@ -119,7 +119,7 @@
               <span class="info-box-icon" style="font-size: 50px">
                 <i class="fas fa-shopping-bag"></i></span>
               <div class="info-box-content">
-                <span class="info-box-text"><b>Pembelian Konsumen</b></span>
+                <span class="info-box-text"><b>Pembelian Pelanggan</b></span>
                 <span class="info-box-number" style="font-size: 25px;"><?= $beli ?></span>
               </div>
             </div>
@@ -127,7 +127,7 @@
           </div>
 
           <div class="col-md-3 col-sm-6 col-12">
-            <a href="user.php">
+            <a href="flashsale.php">
             <div class="info-box <?= $se['warna_report'] ?>">
               <span class="info-box-icon" style="font-size: 50px">
                 <i class="fab fa-optin-monster"></i></span>
@@ -140,7 +140,7 @@
           </div>
 
           <div class="col-md-3 col-sm-6 col-12">
-            <a href="user.php">
+            <a href="kirim.php">
             <div class="info-box <?= $se['warna_report'] ?>">
               <span class="info-box-icon" style="font-size: 50px">
                 <i class="fas fa-shipping-fast"></i></span>
@@ -153,7 +153,7 @@
           </div>
 
           <div class="col-md-3 col-sm-6 col-12">
-            <a href="user.php">
+            <a href="pendapatan.php">
             <div class="info-box <?= $se['warna_report'] ?>">
               <span class="info-box-icon" style="font-size: 50px">
                 <i class="fas fa-dollar-sign"></i></span>
@@ -166,7 +166,7 @@
           </div>
 
           <div class="col-md-3 col-sm-6 col-12">
-            <a href="user.php">
+            <a href="pendapatan1.php">
             <div class="info-box <?= $se['warna_report'] ?>">
               <span class="info-box-icon" style="font-size: 50px">
                 <i class="fas fa-dollar-sign"></i></span>

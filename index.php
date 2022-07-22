@@ -26,7 +26,7 @@
 					<span class="numberstep"><i class="fa fa-shopping-cart"></i></span>
 					<h3 class="numbertext">Promosi</h3>
 					<p>
-						 Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Nullam quis risus eget urna mollis ornare vel eu leo. Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+						Tunggu apa lagi?<br> Beli sekarang sebelum besok naik harga!
 					</p>
 				</div>
 				<!-- /.col-md-4 -->
@@ -37,7 +37,7 @@
 					<span class="numberstep"><i class="fa fa-gift"></i></span>
 					<h3 class="numbertext">Penjualan</h3>
 					<p>
-						 Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Nullam quis risus eget urna mollis ornare vel eu leo. Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+						 Cuma kami toko dengan harga termurah!
 					</p>
 				</div>
 				<!-- /.col -->
@@ -48,7 +48,7 @@
 					<span class="numberstep"><i class="fa fa-download"></i></span>
 					<h3 class="numbertext">Pengiriman</h3>
 					<p>
-						 Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Nullam quis risus eget urna mollis ornare vel eu leo. Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+						 Barang sampai ke tangan penerima yang tepat.
 					</p>
 				</div>
 			</div>

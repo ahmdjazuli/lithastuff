@@ -51,14 +51,12 @@ require "../../tgl_indo.php";
 			<th style="font-weight: normal;"><b>Laba Bersih</b></th>
 			<td style="font-weight: normal;"><b>Rp. <?php echo number_format($woy['total']+$woy1['total']-$woy2['total']-$woy3['total'],0,'.','.') ?></b></td>
 		</tr>
-	</table>
-	</div>
-</div>
+  </table>
 </div>
 <div id="kiri"></div>
 <div id="kanan">
-	Mengetahui,<br><br><br>
-	Pemilik Toko
+	Mengetahui, Pemilik Toko<br><br><br>
+	Litha Octavianti<br>
 </div>
 <script>
 	window.print();

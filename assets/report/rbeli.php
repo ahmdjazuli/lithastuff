@@ -30,7 +30,7 @@ require "../../tgl_indo.php";
 ?>
 
 <style type="text/css" media="print"> @page { size: landscape; } </style>
-<h3 style="text-align: center;">Laporan Data Pembelian</h3>
+<h3 style="text-align: center;">Laporan Data Pembelian Pelanggan</h3>
 <h5 class="text-center">
 	<?php 
 	if($bulan AND $tahun AND empty($status) AND empty($metode)){
@@ -81,12 +81,11 @@ while( $data = mysqli_fetch_array($result) ) :
 </tr>
 <?php endwhile; ?>
   </table>
-<!-- akhir table -->
 </div>
 <div id="kiri"></div>
 <div id="kanan">
-	Mengetahui,<br><br><br>
-	Pemilik Toko
+	Mengetahui, Pemilik Toko<br><br><br>
+	Litha Octavianti<br>
 </div>
 <script>
 	window.print();
